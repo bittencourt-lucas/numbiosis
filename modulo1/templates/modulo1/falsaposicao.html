@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Projeto Numbiosis - Grupo ORNATO</title>
+    </head>
+    <body>
+        <h1>Projeto Numbiosis</h1>
+        <hr />
+        <h4>Método da Falsa Posição</h4>
+        <form action="{% url 'modulo1:calculafp' %}" method="POST">
+            {% csrf_token %}
+            <p>Estimativa Inferior</p>
+            <input type="text" name="xl" /><br />
+            <p>Estimativa Superior</p>
+            <input type="text" name="xu" /><br />
+            <p>Função</p>
+            <input type="text" name="f" /><br />
+            <p>Tolerância</p>
+            <input type="text" name="tol" /><br />
+            <p>Número Máximo de Iterações</p>
+            <input type="text" name="maxi" /><br />
+            <br />
+            <input type="submit" value="Calcular" />
+            <p><a href="{% url 'modulo1:index' %}">Voltar</a></p>
+        </form>
+    </body>
+</html>
