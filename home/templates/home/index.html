@@ -1,13 +1,88 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <title>Projeto Numbiosis - Grupo ORNATO</title>
-    </head>
-    <body>
-        <h1>Projeto Numbiosis</h1>
-        <h1>Grupo Ornato</h1>
-        <h3>Pacote 1</h3>
-        <hr />
-        <p><a href="{% url 'modulo1:index' %}">Link</a></p>
-    </body>
+<!DOCTYPE HTML>
+<html>
+	<head>
+    {% load static %}
+		<title>Numbiosis</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/static/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="/static/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+        <header id="header" class="alt">
+          <h1><a href="index.html">Numbiosis</a></h1>
+          <nav>
+            <a href="#menu">Menu</a>
+          </nav>
+        </header>
+
+				<!-- Menu -->
+        <nav id="menu">
+          <div class="inner">
+            <h2>Menu</h2>
+            <ul class="links">
+              <li><a href="{% url 'home:index' %}">Home</a></li>
+              <li><a href="{% url 'modulo1:index' %}">Modulo-1</a></li>
+            </ul>
+            <a href="#" class="close">Close</a>
+          </div>
+        </nav>
+
+				<!-- Banner -->
+        <section id="banner">
+          <div class="inner">
+            <div class="logo"><span class="icon fa-diamond"></span></div>
+            <h2>Numbiosis</h2>
+            <p>O seu site de aplicações de cálculo numérico</p>
+          </div>
+        </section>
+
+				<!-- Wrapper -->
+					<section id="wrapper">
+						<!-- One -->
+							<section id="one" class="wrapper spotlight style1">
+								<div class="inner">
+									<a href="#" class="image"><img src="images/fig141.png" alt="" /></a>
+									<div class="content">
+										<h2 class="major">
+                      <a href="{% url 'modulo1:index' %}" class="special">Modulo-1</a>
+                    </h2>
+										<p>Nesse módulo você encontra as implementações computacionais interativas de:</p>
+                    <section style="cursor: pointer; text-align: right;">
+                      <a style="margin-right: 2em;">Falsa Posição</a>
+                      <a style="margin-right: 2em;">Secante</a>
+                      <a>Müller</a>
+                    </section>
+									</div>
+								</div>
+							</section>
+          </section>
+          <!-- Footer -->
+					<section id="footer">
+              <div class="inner">
+                <ul class="copyright">
+                  <li>Claudio Lourenço</li>
+                  <li>Gustavo</li>
+                  <li>Lucas Bittencourt</li>
+                  <li>Richelieu Costa</li>
+                  <li>Thiago Luiz</li>
+                </ul>
+              </div>
+            </section>
+			</div>
+
+		<!-- Scripts -->
+			<script src="/static/assets/js/jquery.min.js"></script>
+			<script src="/static/assets/js/jquery.scrollex.min.js"></script>
+			<script src="/static/assets/js/browser.min.js"></script>
+			<script src="/static/assets/js/breakpoints.min.js"></script>
+			<script src="/static/assets/js/util.js"></script>
+			<script src="/static/assets/js/main.js"></script>
+
+	</body>
 </html>
