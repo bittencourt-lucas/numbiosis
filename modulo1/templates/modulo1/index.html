@@ -12,143 +12,108 @@
         <p><a href="{% url 'home:index' %}">Voltar</a></p>
     </body>
 </html> -->
-
 <!DOCTYPE HTML>
+<!--
+	Solid State by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
 	<head>
-		<title>Numbiosis</title>
+		<title>Módulo-1</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="/static/assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="/static/assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
-		<!-- Page Wrapper -->
-		<section id="page-wrapper">
-			<!-- Header -->
-				<header id="header">
-					<h1><a href="{% url 'modulo1:falsaposicao' %}">Numbiosis</a></h1>
-					<nav>
-						<a href="#menu">Menu</a>
-					</nav>
-				</header>
-			<!-- Menu -->
-				<nav id="menu">
-					<div class="inner">
-						<h2>Menu</h2>
-						<ul class="links">
-							<li><a href="{% url 'modulo1:falsaposicao' %}">Home</a></li>
-							<li><a href="generic.html">Módulo01</a></li>
-							<li><a href="elements.html">Módulo-2</a></li>
-						</ul>
-						<a href="#" class="close">Close</a>
-					</div>
-				</nav>
 
-			<!-- Wrapper -->
-				<section id="wrapper">
-					<header>
-						<div class="inner">
-							<h2>Método da Falsa posição</h2>
-							<p>
-								Método numérico usado para resolver equações lineares definidas em um intervalo [a, b],
-								partindo do pressuposto de que haja uma solução em um subintervalo contido em [a, b].
-							</p>
-							<blockquote>
-									<small>Textos e imagens abaixo retiradas da apostila do professor <a href="http://www.mat.ufpb.br/lenimar/textos/numerv2.pdf">Lenimar</a></small>
-							</blockquote>
-						</div>
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="index.html">Numbiosis</a></h1>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
 					</header>
 
-					<!-- Content -->
-						<div class="wrapper">
-							<div class="inner">
-								<section>
-									<article>
-										<h3 class="major">Texto</h3>
-										<p>
-											Suponhamos f (x) duas vezes derivável em um intervalo [a, b] de tal forma que f (a)f (b) < 0 e f′′(x) não mudando
-											de sinal nesse intervalo.O método da Falsa Posição para a determinação de uma raiz da equação f (x) = 0 consiste em
-											aproximar a raiz por x1, a interseção do eixo 0x com o segmento de reta (corda) cujas extremidades
-											são os pontos A = (a, f (a)) e B = (b, f (b)). A partir daí, redefinimos a ou b como sendo igual a
-											x1, repetimos a construção e obtemos um novo ponto x2, e depois, x3, x4 etc. Quando a sequência
-											(xn) converge, ela converge para uma raiz da equação f (x) = 0.
-											Consideraremos dois casos semelhantes:
-										</p>
-									</article>
-									<section style="padding-bottom: 5em;">
-										<ol>
-											<li style="padding-bottom: 2em;">
-												<section>
-													<h4 style="font-weight:bold;">f(a)*f′′(a) < 0.</h4>
-													<img src="/static/images/caso1.PNG" align="left" style="padding-right: 2em; width: 30%;"/>
-													<p>
-														Definimos x0 = a e, no caso 2, x0 = b. A equação da reta que passa por A e B é y − f (a) = ((f(b) − f(a))/(b − a))*
-														(x − a). Fazendo y = 0 e x = x1 e substituindo a por x0, obtemos x1 = x0 + f(x0)/(f(b) − f(x0)) * (x0 − b).
-														De modo análogo, obtemos x2 = x1+ (f(x1)/(f (b) − f (x1))) * (x1−b) e, de modo geral, para n = 0, 1, 2, 3···. obtemos:
-														<blockquote>xn+1 = xn +  (f(xn)/(f(b) − f(xn)) * (xn − b)</blockquote>
-													</p>
-												</section>
-											</li>
-											<li>
-												<section>
-													<h4 style="font-weight:bold;">f(a)*f′′(a) > 0.</h4>
-													<img src="/static/images/caso2.PNG"align="right" style="width: 25%;" />
-													<p>
-															No caso 2, x0 = b e calculando a interseção da reta que passa por A e B com o eixo 0x, obtemos
-															x1=x0 + (f(x0) / (f (a) − f (x0)))*(x0 − a) e, de um modo geral, para n = 0, 1, 2, 3, · · · .
-														<blockquote>xn+1 = xn + (f (xn) / (f (a) − f (xn))) * (xn − a)</blockquote>
-													</p>
-												</section>
-											</li>
-										</ol>
-									</article>
-								</section>
-								<section>
-									<header style="padding-bottom: 3em;">
-										<h3>Teste o método de falsa posição: </h3>
-									</header>
-									<section>
+        <!-- Menu -->
+        <nav id="menu">
+          <div class="inner">
+            <h2>Menu</h2>
+            <ul class="links">
+              <li><a href="{% url 'home:index' %}">Home</a></li>
+              <li><a href="{% url 'modulo1:index' %}">Modulo-1</a></li>
+            </ul>
+            <a href="#" class="close">Close</a>
+          </div>
+        </nav>
 
-                      <form action="{% url 'modulo1:calculafp' %}" method="POST">
-                        {% csrf_token %}
-                        <section class="row gtr-uniform">
-                          <div class="col-4 col-12-xsmall">
-                            <label for="xl">Estimativa Inferior</label>
-                            <input type="text" name="xl" id="xl" />
-                          </div>
-                          <div class="col-4 col-12-xsmall">
-                            <label for="xu">Estimativa Superior</label>
-                            <input type="text" name="xu" id="xu" />
-                          </div>
-                          <div class="col-4 col-12-xsmall">
-                            <label for="f">Função</label>
-                            <input type="text" name="f" id="f" />
-                          </div>
-                          <div class="col-5 col-12-xsmall">
-                            <label for="tol">Tolerância</label>
-                            <input type="text" name="tol" id="tol" />
-                          </div>
-                          <div class="col-5 col-12-xsmall">
-                            <label for="maxi">Número Máximo de Iterações</label>
-                            <input type="text" name="maxi" id="maxi" />
-                          </div>
-                          <div class="col-2" style="margin-top: 2.2em;">
-                            <input class="button primary small fit" type="submit" value="Calcular" />
-                          </div>
-                          <!-- <input type="submit" value="Calcular" /> -->
-                        </section>
-                      </form>
-									</section>
+				<!-- Wrapper -->
+					<section id="wrapper">
+						<header>
+							<div class="inner">
+								<h2>Módulo-1</h2>
+								<p>asdasd
 							</div>
-						</div>
-		</section>
+						</header>
+
+						<!-- Content -->
+							<div class="wrapper">
+								<div class="inner">
+
+									<h3 class="major">Lorem ipsum dolor</h3>
+									<p>Morbi mattis mi consectetur tortor elementum, varius pellentesque velit convallis. Aenean tincidunt lectus auctor mauris maximus, ac scelerisque ipsum tempor. Duis vulputate ex et ex tincidunt, quis lacinia velit aliquet. Duis non efficitur nisi, id malesuada justo. Maecenas sagittis felis ac sagittis semper. Curabitur purus leo donec vel dolor at arcu tincidunt bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce ut aliquet justo. Donec id neque ipsum. Integer eget ultricies odio. Nam vel ex a orci fringilla tincidunt. Aliquam eleifend ligula non velit accumsan cursus. Etiam ut gravida sapien.</p>
+
+									<p>Vestibulum ultrices risus velit, sit amet blandit massa auctor sit amet. Sed eu lectus sem. Phasellus in odio at ipsum porttitor mollis id vel diam. Praesent sit amet posuere risus, eu faucibus lectus. Vivamus ex ligula, tempus pulvinar ipsum in, auctor porta quam. Proin nec commodo, vel scelerisque nisi scelerisque. Suspendisse id quam vel tortor tincidunt suscipit. Nullam auctor orci eu dolor consectetur, interdum ullamcorper ante tincidunt. Mauris felis nec felis elementum varius.</p>
+
+									<h3 class="major">Vitae phasellus</h3>
+									<p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat. Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
+
+									<section class="features">
+										<article>
+											<a href="#" class="image"><img src="/static/images/fig141.png" alt="" /></a>
+											<h3 class="major">Método da falsa posição</h3>
+											<p>Método numérico usado para resolver equações lineares definidas em um intervalo [a, b], partindo do pressuposto de que haja uma solução em um subintervalo contido em [a, b]</p>
+											<a href="{% url 'modulo1:falsaposicao' %}" class="special">Leia mais sobre e teste-o</a>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="/statis/images/pic05.jpg" alt="" /></a>
+											<h3 class="major">Nisl placerat</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>
+											<a href="#" class="special">Learn more</a>
+										</article>
+									</section>
+
+								</div>
+							</div>
+
+					</section>
+
+				<!-- Footer -->
+        <!-- Footer -->
+					<section id="footer">
+            <div class="inner">
+              <ul class="copyright">
+                <li>Autores:   Claudio Lourenço</li>
+                <li>Gustavo Fraga</li>
+                <li>Lucas Bittencourt</li>
+                <li>Richelieu Costa</li>
+                <li>Thiago Luiz</li>
+              </ul>
+            </div>
+          </section>
+
+			</div>
+
 		<!-- Scripts -->
-		<script src="/static/assets/js/jquery.min.js"></script>
-		<script src="/static/assets/js/jquery.scrollex.min.js"></script>
-		<script src="/static/assets/js/browser.min.js"></script>
-		<script src="/static/assets/js/breakpoints.min.js"></script>
-		<script src="/static/assets/js/util.js"></script>
-		<script src="/static/assets/js/main.js"></script>
+			<script src="/static/assets/js/jquery.min.js"></script>
+			<script src="/static/assets/js/jquery.scrollex.min.js"></script>
+			<script src="/static/assets/js/browser.min.js"></script>
+			<script src="/static/assets/js/breakpoints.min.js"></script>
+			<script src="/static/assets/js/util.js"></script>
+			<script src="/static/assets/js/main.js"></script>
 	</body>
 </html>

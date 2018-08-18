@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="pt-br">
     <head>
         <title>Projeto Numbiosis - Grupo ORNATO</title>
@@ -24,4 +24,170 @@
             <p><a href="{% url 'modulo1:index' %}">Voltar</a></p>
         </form>
     </body>
+</html> -->
+<!-- <!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Projeto Numbiosis - Grupo ORNATO</title>
+    </head>
+    <body>
+        <h1>Projeto Numbiosis</h1>
+        <h3>Pacote 1</h3>
+        <hr />
+        <h4>Método da Falsa Posição</h4>
+        <p><a href="{% url 'modulo1:falsaposicao' %}">Link</a></p>
+        <p><a href="{% url 'home:index' %}">Voltar</a></p>
+    </body>
+</html> -->
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Numbiosis</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/static/assets/css/main.css" />
+		<link rel="stylesheet" href="/static/vendors/jquery-ui/jquery-ui.min.css"/>
+		<noscript><link rel="stylesheet" href="/static/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Page Wrapper -->
+		<section id="page-wrapper">
+			<!-- Header -->
+				<header id="header">
+					<h1><a href="{% url 'home:index' %}">Numbiosis</a></h1>
+					<nav>
+						<a href="#menu">Menu</a>
+					</nav>
+				</header>
+				<!-- Menu -->
+        <nav id="menu">
+          <div class="inner">
+            <h2>Menu</h2>
+            <ul class="links">
+              <li><a href="{% url 'home:index' %}">Home</a></li>
+              <li><a href="{% url 'modulo1:index' %}">Modulo-1</a></li>
+            </ul>
+            <a href="#" class="close">Close</a>
+          </div>
+        </nav>
+
+			<!-- Wrapper -->
+				<section id="wrapper">
+					<header>
+						<div class="inner">
+							<h2>Método da Falsa posição</h2>
+							<p>
+								Método numérico usado para resolver equações lineares definidas em um intervalo [a, b],
+								partindo do pressuposto de que haja uma solução em um subintervalo contido em [a, b].
+							</p>
+							<blockquote>
+									<small>Textos e imagens abaixo retiradas da apostila do professor <a href="http://www.mat.ufpb.br/lenimar/textos/numerv2.pdf">Lenimar</a></small>
+							</blockquote>
+						</div>
+					</header>
+
+					<!-- Content -->
+						<div class="wrapper">
+							<div class="inner">
+								<section>
+									<article>
+										<h3 class="major">Texto</h3>
+										<p>
+											Suponhamos f (x) duas vezes derivável em um intervalo [a, b] de tal forma que f (a)f (b) < 0 e f′′(x) não mudando
+											de sinal nesse intervalo.O método da Falsa Posição para a determinação de uma raiz da equação f (x) = 0 consiste em
+											aproximar a raiz por x1, a interseção do eixo 0x com o segmento de reta (corda) cujas extremidades
+											são os pontos A = (a, f (a)) e B = (b, f (b)). A partir daí, redefinimos a ou b como sendo igual a
+											x1, repetimos a construção e obtemos um novo ponto x2, e depois, x3, x4 etc. Quando a sequência
+											(xn) converge, ela converge para uma raiz da equação f (x) = 0.
+											Consideraremos dois casos semelhantes:
+										</p>
+									</article>
+									<section style="padding-bottom: 5em;">
+										<ol>
+											<li style="padding-bottom: 2em;">
+												<section>
+													<h4 style="font-weight:bold;">f(a)*f′′(a) < 0.</h4>
+													<img src="/static/images/caso1.PNG" align="left" style="padding-right: 2em; width: 30%;"/>
+													<p>
+														Definimos x0 = a e, no caso 2, x0 = b. A equação da reta que passa por A e B é y − f (a) = ((f(b) − f(a))/(b − a))*
+														(x − a). Fazendo y = 0 e x = x1 e substituindo a por x0, obtemos x1 = x0 + f(x0)/(f(b) − f(x0)) * (x0 − b).
+														De modo análogo, obtemos x2 = x1+ (f(x1)/(f (b) − f (x1))) * (x1−b) e, de modo geral, para n = 0, 1, 2, 3···. obtemos:
+														<blockquote>xn+1 = xn +  (f(xn)/(f(b) − f(xn)) * (xn − b)</blockquote>
+													</p>
+												</section>
+											</li>
+											<li>
+												<section>
+													<h4 style="font-weight:bold;">f(a)*f′′(a) > 0.</h4>
+													<img src="/static/images/caso2.PNG"align="right" style="width: 25%;" />
+													<p>
+															No caso 2, x0 = b e calculando a interseção da reta que passa por A e B com o eixo 0x, obtemos
+															x1=x0 + (f(x0) / (f (a) − f (x0)))*(x0 − a) e, de um modo geral, para n = 0, 1, 2, 3, · · · .
+														<blockquote>xn+1 = xn + (f (xn) / (f (a) − f (xn))) * (xn − a)</blockquote>
+													</p>
+												</section>
+											</li>
+										</ol>
+									</article>
+								</section>
+								<section>
+									<header style="padding-bottom: 3em;">
+										<h3>Teste o método de falsa posição: </h3>
+									</header>
+									<section>
+										<!-- <form action="{% url 'modulo1:calculafp' %}" method="POST" id="mfpForm"-->
+										<section class="row gtr-uniform" id="falta_posicao_inputs">
+											{% csrf_token %}
+											<div class="col-4 col-12-xsmall">
+												<label for="xl">Estimativa Inferior</label>
+												<input type="text" name="xl" id="botton_estimate" placeholder="-1"
+												title="Deve ser digitado números inteiros, você pode usar o valor de ex: -1"/>
+											</div>
+											<div class="col-4 col-12-xsmall">
+												<label for="xu">Estimativa Superior</label>
+												<input type="text" name="xu" id="top_estimate"  placeholder="1"
+												title="Deve ser digitado números inteiros, você pode usar o valor de ex: 1"/>
+											</div>
+											<div class="col-4 col-12-xsmall">
+												<label for="f">Função</label>
+												<input type="text" name="f" id="function_calculate"  placeholder="np.cos(x) - x"
+												title="Deve ser digitado a função que deve ser calculada: cos(x) - x"/>
+											</div>
+											<div class="col-5 col-12-xsmall">
+												<label for="tol">Tolerância</label>
+												<input type="text" name="tol" id="tolerance"  placeholder="1e-10"
+												title="Deve ser digitado qual a tolerancia aceita, você pode usar o valor de ex: 1e-10"/>
+											</div>
+											<div class="col-5 col-12-xsmall">
+												<label for="maxi">Número Máximo de Iterações</label>
+												<input type="text" name="maxi" id="maximum_interations" placeholder="100"
+												title="Deve ser digitado o número máximo de iterações, você pode usar o valor de ex: 100"/>
+											</div>
+											<div class="col-2" style="margin-top: 2.2em;">
+												<button class="button primary small fit" type="submit" id="calcular">Calcular</button>
+											</div>
+										</section>
+										<section class="col-md-8" id="show_plots" style="background-color: white; margin-top: 5em;">
+										</section>
+
+										<!-- </form> -->
+									</section>
+							</div>
+						</div>
+		</section>
+		<!-- Scripts -->
+		<script src="/static/assets/js/jquery.min.js"></script>
+		<script src="/static/vendors/cookie/jquery.cookie.js"></script>
+		<script charset="UTF8" src="/static/vendors/jquery-ui/jquery-ui.min.js"></script>
+		<script src="/static/assets/js/jquery.scrollex.min.js"></script>
+		<script src="/static/assets/js/browser.min.js"></script>
+		<script src="/static/assets/js/breakpoints.min.js"></script>
+		<script src="/static/assets/js/util.js"></script>
+		<script src="/static/assets/js/main.js"></script>
+		<script src="/static/js/plotGraph.js"></script>
+		<script src="/static/js/falsaPosicao.js"></script>
+		<script src="https://unpkg.com/d3@3/d3.min.js"></script>
+		<script src="https://unpkg.com/function-plot@1/dist/function-plot.js"></script>
+	</body>
 </html>

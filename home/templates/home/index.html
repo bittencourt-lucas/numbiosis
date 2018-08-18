@@ -15,7 +15,7 @@
 
 				<!-- Header -->
         <header id="header" class="alt">
-          <h1><a href="index.html">Numbiosis</a></h1>
+          <h1><a href="{% url 'home:index' %}">Numbiosis</a></h1>
           <nav>
             <a href="#menu">Menu</a>
           </nav>
@@ -54,7 +54,7 @@
                     </h2>
 										<p>Nesse módulo você encontra as implementações computacionais interativas de:</p>
                     <section style="cursor: pointer; text-align: right;">
-                      <a style="margin-right: 2em;">Falsa Posição</a>
+                      <a style="margin-right: 2em;" href="{% url 'modulo1:falsaposicao' %}">Falsa Posição</a>
                       <a style="margin-right: 2em;">Secante</a>
                       <a>Müller</a>
                     </section>
@@ -67,7 +67,7 @@
               <div class="inner">
                 <ul class="copyright">
                   <li>Claudio Lourenço</li>
-                  <li>Gustavo</li>
+                  <li>Gustavo Fraga</li>
                   <li>Lucas Bittencourt</li>
                   <li>Richelieu Costa</li>
                   <li>Thiago Luiz</li>

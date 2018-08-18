@@ -3,7 +3,8 @@ from django.shortcuts import render
 from django.views import generic
 import numpy as np
 import scipy as sp
-
+import json
+from django.http import HttpResponse
 # Create your views here.
 
 class IndexView(generic.TemplateView):
@@ -13,13 +14,12 @@ class FalsaPosicaoView(generic.TemplateView):
     template_name = 'modulo1/falsaposicao.html'
 
 def calculafp(request):
-    a = int(request.POST['xl'])
-    b = int(request.POST['xu'])
-    f = lambda x: eval(request.POST['f'])
-    maxi = int(request.POST['maxi'])
-    tol = float(request.POST['tol'])
+    a = int(request.POST.get('xl'))
+    b = int(request.POST.get('xu'))
+    f = lambda x: eval(request.POST.get('f'))
+    maxi = int(request.POST.get('maxi'))
+    tol = float(request.POST.get('tol'))
     ka = f(a)
-    print(ka)
     kb = f(b)
     i = 0
     while i < maxi:
@@ -32,6 +32,8 @@ def calculafp(request):
         elif (ka * kxm) > 0:
             a = xm
         i += 1
-    return render(request, 'modulo1/calculafp.html', {
-        'resultadofp': xm,
-    })
+    print('>>>>>>>>>>')
+    return HttpResponse(json.dumps({ 'resultadofp': xm }), content_type="application/json")
+    # render(request, 'modulo1/calculafp.html', {
+    #     'resultadofp': xm,
+    # })
