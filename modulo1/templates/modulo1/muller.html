@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Numbiosis</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/static/assets/css/main.css" />
+		<link rel="stylesheet" href="/static/vendors/jquery-ui/jquery-ui.min.css"/>
+		<noscript><link rel="stylesheet" href="/static/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Page Wrapper -->
+		<section id="page-wrapper">
+			<!-- Header -->
+				<header id="header">
+					<h1><a href="{% url 'home:index' %}">Numbiosis</a></h1>
+					<nav>
+						<a href="#menu">Menu</a>
+					</nav>
+				</header>
+				<!-- Menu -->
+        <nav id="menu">
+          <div class="inner">
+            <h2>Menu</h2>
+            <ul class="links">
+              <li><a href="{% url 'home:index' %}">Home</a></li>
+              <li><a href="{% url 'modulo1:index' %}">Modulo-1</a></li>
+            </ul>
+            <a href="#" class="close">Close</a>
+          </div>
+        </nav>
+
+			<!-- Wrapper -->
+				<section id="wrapper">
+					<header>
+						<div class="inner">
+							<h2>Método de Müller</h2>
+							<p>
+                O método de Muller é um método numérico para o cálculo de uma ou mais raízes de equações de uma
+                variável baseado em uma aproximação quadrática.
+              </p>
+              <img src="/static/images/muller.jpg" align="left" style="padding-right: 2em; width: 30%;"/>
+							<blockquote>
+									<small>Textos e imagens abaixo retiradas da apostila do professor <a href="http://www.mat.ufpb.br/lenimar/textos/numerv2.pdf" target="_blank">Lenimar</a></small>
+							</blockquote>
+						</div>
+					</header>
+
+					<!-- Content -->
+						<div class="wrapper">
+							<div class="inner">
+								<section>
+									<article>
+										<h3 class="major">Texto</h3>
+										<p>
+                        O método de Muller é um método numérico para o cálculo de uma ou mais raízes de equações de uma
+                        variável baseado em uma aproximação quadrática. Foi proposto inicialmente por David E.
+                        Muller em 1956. Conhecendo-se o intervalo [x0, x2] ao qual a raiz pertence, é feita uma
+                        aproximação da função f(x) na proximidade da raiz ξ com um polinômio interpolador de grau 2.
+                        O polinômio deve passar pelos três pontos [x0, f(x0)], [x1, f(x1)] e [x2, f(x2)] interpolados e
+                        então a raiz do polinômio será a primeira estimativa da raiz de f(x)=0. Novas iterações são feitas
+                        repetindo esse procedimento com os três pontos mais próximos da raiz.
+                        Essa técnica é uma modificação do Método das secantes, pois ao invés da aproximação ser feita
+                        pela reta que passa por dois pontos da curva, é feita pela parábola que passa por três pontos dados.
+                        Portanto, a estimativa para a raiz é melhor pelo método de Muller do que pelo das Secantes.
+                        Além disso, esse método é válido para a calcular de raiz de qualquer problema,
+                        especialmente no caso de polinômios, pois pode aproximar raízes complexas também.
+                    </p>
+									</article>
+									<section style="padding-bottom: 5em;">
+
+									</article>
+								</section>
+								<section>
+									<header style="padding-bottom: 3em;">
+										<h3>Teste o método de Müller</h3>
+									</header>
+									<section>
+										<!-- <form action="{% url 'modulo1:calculafp' %}" method="POST" id="mfpForm"-->
+										<section class="row gtr-uniform" id="falta_posicao_inputs">
+											{% csrf_token %}
+											<div class="col-4 col-12-xsmall">
+												<label for="xl">Estimativa Inferior</label>
+												<input type="text" name="xl" id="botton_estimate" placeholder="-1"
+												title="Deve ser digitado números inteiros, você pode usar o valor de ex: -1"/>
+											</div>
+											<div class="col-4 col-12-xsmall">
+												<label for="xu">Estimativa Superior</label>
+												<input type="text" name="xu" id="top_estimate"  placeholder="1"
+												title="Deve ser digitado números inteiros, você pode usar o valor de ex: 1"/>
+											</div>
+											<div class="col-4 col-12-xsmall">
+												<label for="f">Função</label>
+												<input type="text" name="f" id="function_calculate"  placeholder="np.cos(x) - x"
+												title="Deve ser digitado a função que deve ser calculada: cos(x) - x"/>
+											</div>
+											<div class="col-5 col-12-xsmall">
+												<label for="tol">Tolerância</label>
+												<input type="text" name="tol" id="tolerance"  placeholder="1e-10"
+												title="Deve ser digitado qual a tolerancia aceita, você pode usar o valor de ex: 1e-10"/>
+											</div>
+											<div class="col-5 col-12-xsmall">
+												<label for="maxi">Número Máximo de Iterações</label>
+												<input type="text" name="maxi" id="maximum_interations" placeholder="100"
+												title="Deve ser digitado o número máximo de iterações, você pode usar o valor de ex: 100"/>
+											</div>
+											<div class="col-2" style="margin-top: 2.2em;">
+												<button class="button primary small fit" type="submit" id="calcular">Calcular</button>
+											</div>
+										</section>
+										<section class="col-md-8" id="show_plots" style="background-color: white; margin-top: 5em;">
+										</section>
+										<!-- </form> -->
+									</section>
+							</div>
+						</div>
+		</section>
+		<!-- Scripts -->
+		<script src="/static/assets/js/jquery.min.js"></script>
+		<script src="/static/vendors/cookie/jquery.cookie.js"></script>
+		<script charset="UTF8" src="/static/vendors/jquery-ui/jquery-ui.min.js"></script>
+		<script src="/static/assets/js/jquery.scrollex.min.js"></script>
+		<script src="/static/assets/js/browser.min.js"></script>
+		<script src="/static/assets/js/breakpoints.min.js"></script>
+		<script src="/static/assets/js/util.js"></script>
+		<script src="/static/assets/js/main.js"></script>
+		<script src="/static/js/plotGraph.js"></script>
+		<script src="/static/js/falsaPosicao.js"></script>
+		<script src="https://unpkg.com/d3@3/d3.min.js"></script>
+		<script src="https://unpkg.com/function-plot@1/dist/function-plot.js"></script>
+	</body>
+</html>

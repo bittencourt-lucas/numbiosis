@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Numbiosis</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/static/assets/css/main.css" />
+		<link rel="stylesheet" href="/static/vendors/jquery-ui/jquery-ui.min.css"/>
+		<noscript><link rel="stylesheet" href="/static/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Page Wrapper -->
+		<section id="page-wrapper">
+			<!-- Header -->
+				<header id="header">
+					<h1><a href="{% url 'home:index' %}">Numbiosis</a></h1>
+					<nav>
+						<a href="#menu">Menu</a>
+					</nav>
+				</header>
+				<!-- Menu -->
+        <nav id="menu">
+          <div class="inner">
+            <h2>Menu</h2>
+            <ul class="links">
+              <li><a href="{% url 'home:index' %}">Home</a></li>
+              <li><a href="{% url 'modulo1:index' %}">Modulo-1</a></li>
+            </ul>
+            <a href="#" class="close">Close</a>
+          </div>
+        </nav>
+
+			<!-- Wrapper -->
+				<section id="wrapper">
+					<header>
+						<div class="inner">
+							<h2>Método da Secante, também conhecido como método de Newton</h2>
+							<p>
+                Em análise numérica, o método das secantes é um algoritmo de busca de raízes que usa uma sequência de
+                raízes de linhas secantes para aproximar cada vez melhor a raiz de uma função f.
+							</p>
+              <img src="/static/images/secante.jpg" align="left" style="padding-right: 2em; width: 30%;"/>
+							<blockquote>
+									<small>Textos abaixo retiradas da apostila do professor <a href="http://www.mat.ufpb.br/lenimar/textos/numerv2.pdf" target="_blank">Lenimar</a></small>
+              </blockquote>
+						</div>
+					</header>
+
+					<!-- Content -->
+						<div class="wrapper">
+							<div class="inner">
+								<section>
+									<article>
+                    <h3 class="major">Texto</h3>
+                    <p>
+                        Em análise numérica, o método das secantes é um algoritmo de busca de raízes que usa uma sequência de
+                        raízes de linhas secantes para aproximar cada vez melhor a raiz de uma função f. O método da secante pode
+                        ser pensado como uma aproximação por diferenças finitas do método de Newton. No entanto,
+                        foi desenvolvido independentemente do método de Newton, e antecedeu-o por mais de 3.000 anos
+                    </p>
+										<p>
+                        Seja f (x) uma função da qual se conhecem seus valores em n + 1 pontos distintos x0, x1, · · · , xn
+                        do seu domínio. Definimos:
+                    </p>
+                    <ol>
+                      <li>f [x0] = f (x0)</li>
+                      <li>f [x0, x1] = f [x1] − f [x0] / x1 − x0</li>
+                      <li>f [x0, x1, x2] = f [x1, x2] − f [x0, x1] / x2 − x0 </li>
+                      <li>f [x0, x1, x2, x3] = f [x1, x2, x3] − f [x0, x1, x2] / x3 − x0 </li>
+                      <li> .  </li>
+                      <li> .  </li>
+                      <li> .  </li>
+                      <li>f [x0, x1, · · · , xn] = f [x1, · · · , xn] − f [x0, · · · , xn−1] / xn − x0 </li>
+                    </ol>
+									</article>
+									<section style="padding-bottom: 5em;">
+                      <section>
+                        <p>
+                          Dizemos que f [x0, x1, · · · , xk ] é a diferença dividida de ordem k de f calculada nos pontos x0, x1,
+                          · · · , xk e é denotada de forma abreviada por ∆^k f. Note que o cálculo de uma ∆^k f depende de todas as
+                          ∆^j f anteriores para j < k.
+                          Vamos organizar as diferenças divididas calculadas no formato da seguinte tabela:
+                        </p>
+                        <table style="margin-top: 3em;">
+                          <tr>
+                            <th>x</th>
+                            <th>f(x)</th>
+                            <th>∆f</th>
+                            <th>∆^2 f</th>
+                            <th>...</th>
+                            <th∆^n f</th>
+                          </tr>
+                          <tr>
+                            <td>x0</td>
+                            <td>f (x0)</td>
+                            <td>f [x0, x1]</td>
+                            <td>f [x0, x1, x2]</td>
+                            <td> · · · </td>
+                            <td>f [x0, x1, · · · , xn]</td>
+                          </tr>
+                          <tr>
+                            <td>x1</td>
+                            <td>f (x1)</td>
+                            <td>f [x1, x2]</td>
+                            <td>f [x1, x2, x3]</td>
+                            <td>· · ·</td>
+                            <td>. . .</td>
+                          </tr>
+                          <tr>
+                            <td>. . .</td>
+                            <td>. . .</td>
+                            <td>. . .</td>
+                            <td>. . .</td>
+                            <td>. . .</td>
+                            <td>. . .</td>
+                          </tr>
+                          <tr>
+                            <td>xn</td>
+                            <td>f(Xn)</td>
+                            <td>- - -</td>
+                            <td>- - -</td>
+                            <td>- - -</td>
+                            <td>- - -</td>
+                          </tr>
+                        </table>
+                        <p>
+                          Essa tabela tem um formato triangular pois os valores abaixo da diagonal secundária não são
+                          calculados.
+                        </p>
+                        <h3>Observação</h3>
+                        <p>
+                          A ordem dos pontos xi não influencia no resultado final: f [x0, x1] = f [x1, x0],
+                          f [x0, x1, x2] = f [x2, x1, x0] = f [x1, x2, x0] = f [x2, x0, x1], etc.
+                        </p>
+                      </section>
+									</article>
+								</section>
+								<section>
+									<header style="padding-bottom: 3em;">
+										<h3>Teste o método de secante: </h3>
+									</header>
+									<section>
+										<!-- <form action="{% url 'modulo1:calculafp' %}" method="POST" id="mfpForm"-->
+										<section class="row gtr-uniform" id="falta_posicao_inputs">
+											{% csrf_token %}
+											<div class="col-4 col-12-xsmall">
+												<label for="xl">Estimativa Inferior</label>
+												<input type="text" name="xl" id="botton_estimate" placeholder="-1"
+												title="Deve ser digitado números inteiros, você pode usar o valor de ex: -1"/>
+											</div>
+											<div class="col-4 col-12-xsmall">
+												<label for="xu">Estimativa Superior</label>
+												<input type="text" name="xu" id="top_estimate"  placeholder="1"
+												title="Deve ser digitado números inteiros, você pode usar o valor de ex: 1"/>
+											</div>
+											<div class="col-4 col-12-xsmall">
+												<label for="f">Função</label>
+												<input type="text" name="f" id="function_calculate"  placeholder="np.cos(x) - x"
+												title="Deve ser digitado a função que deve ser calculada: cos(x) - x"/>
+											</div>
+											<div class="col-5 col-12-xsmall">
+												<label for="tol">Tolerância</label>
+												<input type="text" name="tol" id="tolerance"  placeholder="1e-10"
+												title="Deve ser digitado qual a tolerancia aceita, você pode usar o valor de ex: 1e-10"/>
+											</div>
+											<div class="col-5 col-12-xsmall">
+												<label for="maxi">Número Máximo de Iterações</label>
+												<input type="text" name="maxi" id="maximum_interations" placeholder="100"
+												title="Deve ser digitado o número máximo de iterações, você pode usar o valor de ex: 100"/>
+											</div>
+											<div class="col-2" style="margin-top: 2.2em;">
+												<button class="button primary small fit" type="submit" id="calcular">Calcular</button>
+											</div>
+										</section>
+										<section class="col-md-8" id="show_plots" style="background-color: white; margin-top: 5em;">
+										</section>
+
+										<!-- </form> -->
+									</section>
+							</div>
+						</div>
+		</section>
+		<!-- Scripts -->
+		<script src="/static/assets/js/jquery.min.js"></script>
+		<script src="/static/vendors/cookie/jquery.cookie.js"></script>
+		<script charset="UTF8" src="/static/vendors/jquery-ui/jquery-ui.min.js"></script>
+		<script src="/static/assets/js/jquery.scrollex.min.js"></script>
+		<script src="/static/assets/js/browser.min.js"></script>
+		<script src="/static/assets/js/breakpoints.min.js"></script>
+		<script src="/static/assets/js/util.js"></script>
+		<script src="/static/assets/js/main.js"></script>
+		<script src="/static/js/plotGraph.js"></script>
+		<script src="/static/js/falsaPosicao.js"></script>
+		<script src="https://unpkg.com/d3@3/d3.min.js"></script>
+		<script src="https://unpkg.com/function-plot@1/dist/function-plot.js"></script>
+	</body>
+</html>

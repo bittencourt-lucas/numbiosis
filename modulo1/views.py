@@ -13,6 +13,12 @@ class IndexView(generic.TemplateView):
 class FalsaPosicaoView(generic.TemplateView):
     template_name = 'modulo1/falsaposicao.html'
 
+class SecanteView(generic.TemplateView):
+    template_name = 'modulo1/secante.html'
+
+class MullerView(generic.TemplateView):
+    template_name = 'modulo1/muller.html'
+
 def calculafp(request):
     a = int(request.POST.get('xl'))
     b = int(request.POST.get('xu'))
