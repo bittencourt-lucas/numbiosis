@@ -56,7 +56,7 @@
 						<header>
 							<div class="inner">
 								<h2>Módulo-1</h2>
-								<p>asdasd
+								<p>Neste módulo você encontrará os metodos da falsa posição, secante e de muller.</p>
 							</div>
 						</header>
 
@@ -64,27 +64,68 @@
 							<div class="wrapper">
 								<div class="inner">
 
-									<h3 class="major">Lorem ipsum dolor</h3>
-									<p>Morbi mattis mi consectetur tortor elementum, varius pellentesque velit convallis. Aenean tincidunt lectus auctor mauris maximus, ac scelerisque ipsum tempor. Duis vulputate ex et ex tincidunt, quis lacinia velit aliquet. Duis non efficitur nisi, id malesuada justo. Maecenas sagittis felis ac sagittis semper. Curabitur purus leo donec vel dolor at arcu tincidunt bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce ut aliquet justo. Donec id neque ipsum. Integer eget ultricies odio. Nam vel ex a orci fringilla tincidunt. Aliquam eleifend ligula non velit accumsan cursus. Etiam ut gravida sapien.</p>
+									<h3 class="major">Resumo</h3>
+									<section>
+										<h4>Método da falsa posição</h4>
+										<p>Método numérico usado para resolver equações lineares definidas em um intervalo [a, b],
+											partindo do pressuposto de que haja uma solução em um subintervalo contido em [a, b]</p>
+									</section>
 
-									<p>Vestibulum ultrices risus velit, sit amet blandit massa auctor sit amet. Sed eu lectus sem. Phasellus in odio at ipsum porttitor mollis id vel diam. Praesent sit amet posuere risus, eu faucibus lectus. Vivamus ex ligula, tempus pulvinar ipsum in, auctor porta quam. Proin nec commodo, vel scelerisque nisi scelerisque. Suspendisse id quam vel tortor tincidunt suscipit. Nullam auctor orci eu dolor consectetur, interdum ullamcorper ante tincidunt. Mauris felis nec felis elementum varius.</p>
+									<section>
+										<h4>Método das Secantes</h4>
+										<p>Em análise numérica, o método das secantes é um algoritmo de busca de raízes que usa uma sequência de
+											raízes de linhas secantes para aproximar cada vez melhor a raiz de uma função f.</p>
+									</section>
 
-									<h3 class="major">Vitae phasellus</h3>
-									<p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat. Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
+									<section>
+										<h4>Método de Müller</h4>
+										<p>
+												O método de Muller é um método numérico para o cálculo de uma ou mais raízes de equações de uma variável
+												baseado em uma aproximação quadrática. Foi proposto inicialmente por David E. Muller em 1956.
+												Conhecendo-se o intervalo [x0, x2] ao qual a raiz pertence, é feita uma aproximação da função f(x) na
+												proximidade da raiz ξ com um polinômio interpolador de grau 2. O polinômio deve passar pelos três pontos [x0, f(x0)],
+												[x1, f(x1)] e [x2, f(x2)] interpolados e então a raiz do polinômio será a primeira estimativa da raiz de f(x)=0.
+												Novas iterações são feitas repetindo esse procedimento com os três pontos mais próximos da raiz.
+												Essa técnica é uma modificação do Método das secantes, pois ao invés da aproximação ser feita pela reta
+												que passa por dois pontos da curva, é feita pela parábola que passa por três pontos dados.
+												Portanto, a estimativa para a raiz é melhor pelo método de Muller do que pelo das Secantes.
+										</p>
+									</section>
 
 									<section class="features">
-										<article>
-											<a href="#" class="image"><img src="/static/images/fig141.png" alt="" /></a>
-											<h3 class="major">Método da falsa posição</h3>
-											<p>Método numérico usado para resolver equações lineares definidas em um intervalo [a, b], partindo do pressuposto de que haja uma solução em um subintervalo contido em [a, b]</p>
-											<a href="{% url 'modulo1:falsaposicao' %}" class="special">Leia mais sobre e teste-o</a>
+										<article style="width: 15.2em;">
+											<a href="{% url 'modulo1:falsaposicao' %}" class="image">
+												<img src="/static/images/fig141.png" alt="" />
+											</a>
+											<h4 class="major">
+											<a href="{% url 'modulo1:falsaposicao' %}" class="special">
+												Método da falsa posição
+											</a>
+											</h4>
 										</article>
-										<article>
-											<a href="#" class="image"><img src="/statis/images/pic05.jpg" alt="" /></a>
-											<h3 class="major">Nisl placerat</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>
-											<a href="#" class="special">Learn more</a>
+
+										<article style="width: 15.2em; margin-right: 3em;">
+											<a href="{% url 'modulo1:falsaposicao' %}" class="image">
+												<img src="/static/images/secante.jpg" alt="" />
+											</a>
+											<h4 class="major">
+											<a href="{% url 'modulo1:falsaposicao' %}" class="special">
+												Método da Secante
+											</a>
+											</h4>
 										</article>
+
+										<article style="width: 15.2em;">
+											<a href="{% url 'modulo1:falsaposicao' %}" class="image">
+												<img src="/static/images/muller.jpg" alt="" />
+											</a>
+											<h4 class="major">
+											<a href="{% url 'modulo1:falsaposicao' %}" class="special">
+												Método da falsa posição
+											</a>
+											</h4>
+										</article>
+
 									</section>
 
 								</div>
