@@ -4,7 +4,6 @@ $(function() {
     track: true
   });
   createPlotage();
-
   $('#calcular').click(function () {
     var csrftoken = $("input[name=csrfmiddlewaretoken]").val();
     var botton_estimate = $('#botton_estimate');
@@ -29,7 +28,6 @@ $(function() {
     if(!tol) { tol = tolerance.attr('placeholder'); }
     if(!maxi) { maxi = maximum_interations.attr('placeholder'); }
     var plot = f.replace("np.", "");
-    console.log(plot);
     createPlotage(plot);
     $.ajax({
       type:"POST",
@@ -42,8 +40,8 @@ $(function() {
         "maxi": maxi,
         "csrfmiddlewaretoken": csrftoken
       },
-      success: function(es){
-        console.log(es);
+      success: function(response){
+        createPlotage(plot, response.points);
       }
     });
   })
