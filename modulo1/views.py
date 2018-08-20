@@ -20,6 +20,7 @@ class MullerView(generic.TemplateView):
     template_name = 'modulo1/muller.html'
 
 def calculafp(request):
+    pontos = []
     a = int(request.POST.get('xl'))
     b = int(request.POST.get('xu'))
     f = lambda x: eval(request.POST.get('f'))
@@ -32,14 +33,13 @@ def calculafp(request):
         xm = (b * ka - a * kb) / (ka - kb)
         kxm = f(xm)
         if abs(a - b) < tol:
+            pontos.append([xm, kxm])
             break
         elif (ka * kxm) < 0:
             b = xm
+            pontos.append([xm, kxm])
         elif (ka * kxm) > 0:
             a = xm
+            pontos.append([xm, kxm])
         i += 1
-    print('>>>>>>>>>>')
-    return HttpResponse(json.dumps({ 'resultadofp': xm }), content_type="application/json")
-    # render(request, 'modulo1/calculafp.html', {
-    #     'resultadofp': xm,
-    # })
+    return HttpResponse(json.dumps({ 'points': pontos }), content_type="application/json")

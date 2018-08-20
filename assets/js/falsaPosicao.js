@@ -41,6 +41,8 @@ $(function() {
         "csrfmiddlewaretoken": csrftoken
       },
       success: function(response){
+        console.log('>>>>>>>>>>>>>>>>>>>>>')
+        console.log(response);
         createPlotage(plot, response.points);
       }
     });
