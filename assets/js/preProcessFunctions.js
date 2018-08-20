@@ -4,6 +4,8 @@ const rouding = /(around|round_|rint|fix|floor|ceil|trunc)/
 const sumsProductsDifferences = /(prod|sum|nanprod|nansum|cumprod|cumsum|nancumprod|nancumsum|diff|ediff1d|gradient|cross|trapz)/
 const exponentsLogarithms = /(exp|expm1|exp2|log2|log1p|logaddexp|logaddexp2)/
 
+const multiplyRegex = /\d+(?=([a-z|A-Z]))/
+
 function preProcess(func) {
   var processed = '';
   var index
@@ -18,4 +20,22 @@ function preProcess(func) {
     }
   }
   console.log(func);
+}
+
+function fixGraph(func) {
+  var plot = func.replace("np.", "");
+  if (plot.indexOf("**") !== -1) {
+    plot = plot.replace("**", "^");
+  }
+  return plot;
+}
+
+function fixPython(func) {
+  var plot = func.replace("^", "**");
+  var fix;
+  while(multiplyRegex.test(plot)) {
+    fix = multiplyRegex.exec(plot);
+    plot = plot.replace(`${fix[0]}${fix[1]}`, `${fix[0]}*${fix[1]}`)
+  }
+  return plot;
 }

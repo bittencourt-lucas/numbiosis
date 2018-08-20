@@ -27,7 +27,9 @@ $(function() {
     if(!f) { f = function_calculate.attr('placeholder'); }
     if(!tol) { tol = tolerance.attr('placeholder'); }
     if(!maxi) { maxi = maximum_interations.attr('placeholder'); }
-    var plot = f.replace("np.", "");
+    var plot = fixGraph(f);
+    f = fixPython(f);
+
     createPlotage(plot);
     $.ajax({
       type:"POST",
@@ -41,19 +43,8 @@ $(function() {
         "csrfmiddlewaretoken": csrftoken
       },
       success: function(response){
-        console.log('>>>>>>>>>>>>>>>>>>>>>')
-        console.log(response);
         createPlotage(plot, response.points);
       }
     });
   })
 });
-
-/**
- * "xl": "-1",
-        "xu": "1",
-        "f": "np.cos(x) - x",
-        "tol": "1e-10",
-        "maxi": "100",
-        "csrfmiddlewaretoken": csrftoken
- */
