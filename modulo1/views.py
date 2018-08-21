@@ -43,3 +43,51 @@ def calculafp(request):
             pontos.append([xm, kxm])
         i += 1
     return HttpResponse(json.dumps({ 'points': pontos }), content_type="application/json")
+
+def calculasecante(request):
+    inf  = int(request.POST.get('xl'))                # Limite inferior
+    sup  = int(request.POST.get('xu'))                # Limite superior
+    it   = int(request.POST.get('max'))               # Número de iterações
+    tol  = float(request.POST.get('tol'))             # Tolerância do cáculo
+    func = lambda x: eval(request.POST.get('f'))      # Função a ser utilizada nos calculos
+
+    k = 0
+    xm = 0
+
+    while k <= it:
+        if abs(func(inf)) > tol or abs(sup - inf) > tol:
+            xm = sup - (sup - inf) * (func(sup) / (func(sup) - func(inf)))
+            inf = sup
+            sup = xm
+        k += 1
+    return HttpResponse(json.dumps({ 'resultadosecante': xm }), content_type="application/json")
+
+def calculamuller(request):
+    inf  = int(request.POST.get('xl'))                # Limite inferior
+    sup  = int(request.POST.get('xu'))                # Limite superior
+    it   = int(request.POST.get('max'))               # Número de iterações
+    tol  = float(request.POST.get('tol'))             # Tolerância do cáculo
+    func = lambda x: eval(request.POST.get('f'))      # Função a ser utilizada nos calculos
+
+    x = [inf,sup,tol]
+    for loopCount in range(it):
+        x = swap_points(x)
+        y = func(x[0]), func(x[1]), func(x[2])
+        h1 = x[1]-x[0]
+        h2 = x[0]-x[2]
+        lam = h2/h1
+        c = y[0]
+        inf = (lam*y[1] - y[0]*((1.0+lam))+y[2])/(lam*h1**2.0*(1+lam))
+        sup = (y[1] - y[0] - inf*((h1)**2.0))/(h1)
+        if sup > 0:
+            root = x[0] - ((2.0*c)/(sup+ (sup**2 - 4.0*inf*c)**0.5))
+        else:
+            root = x[0] - ((2.0*c)/(sup- (sup**2 - 4.0*inf*c)**0.5))
+        print "inf = %.5f sup = %.5f c = %.5f root = %.5f " % (inf,sup,c,root)
+        print "Current approximation is %.9f" % root
+        if abs(func(root)) > x[0]:
+            x = [x[1],x[0],root]
+        else:
+            x = [x[2],x[0],root]
+        x = swap_points(x)
+    return HttpResponse(json.dumps({ 'resultadomuller': x }), content_type="application/json")
