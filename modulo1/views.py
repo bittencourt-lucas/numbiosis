@@ -45,32 +45,48 @@ def calculafp(request):
     return HttpResponse(json.dumps({ 'points': pontos }), content_type="application/json")
 
 def calculasecante(request):
+    pontos = []
     inf  = int(request.POST.get('xl'))                # Limite inferior
     sup  = int(request.POST.get('xu'))                # Limite superior
-    it   = int(request.POST.get('maxi'))               # Número de iterações
+    it   = int(request.POST.get('maxi'))              # Número de iterações
     tol  = float(request.POST.get('tol'))             # Tolerância do cáculo
     func = lambda x: eval(request.POST.get('f'))      # Função a ser utilizada nos calculos
 
     k = 0
     xm = 0
-
+    pontos.append([inf, sup])
+    
     while k <= it:
         if abs(func(inf)) > tol or abs(sup - inf) > tol:
             xm = sup - (sup - inf) * (func(sup) / (func(sup) - func(inf)))
             inf = sup
             sup = xm
+            pontos.append([inf, sup])
         k += 1
-    # print (xm);
-    return HttpResponse(json.dumps({ 'points': xm }), content_type="application/json")
+    return HttpResponse(json.dumps({ 'points': pontos }), content_type="application/json")
+
+def swap_points(x):
+    s = []
+    s = x
+    s.sort()
+    f = s[1]
+    sn = s[2]
+    t = s[0]
+    s[0] = f
+    s[1] = sn
+    s[2] = t
+    return s
 
 def calculamuller(request):
-    inf  = int(request.POST.get('xl'))                # Limite inferior
-    sup  = int(request.POST.get('xu'))                # Limite superior
-    it   = int(request.POST.get('maxi'))               # Número de iterações
-    tol  = float(request.POST.get('tol'))             # Tolerância do cáculo
+    pontos = []
+    a    = int(request.POST.get('xl'))                # Limite inferior
+    b    = int(request.POST.get('xu'))                # Limite superior
+    it   = int(request.POST.get('maxi'))              # Número de iterações
+    r    = float(request.POST.get('tol'))             # Tolerância do cáculo
     func = lambda x: eval(request.POST.get('f'))      # Função a ser utilizada nos calculos
 
-    x = [inf,sup,tol]
+    x = [a,b,r]
+
     for loopCount in range(it):
         x = swap_points(x)
         y = func(x[0]), func(x[1]), func(x[2])
@@ -78,17 +94,18 @@ def calculamuller(request):
         h2 = x[0]-x[2]
         lam = h2/h1
         c = y[0]
-        inf = (lam*y[1] - y[0]*((1.0+lam))+y[2])/(lam*h1**2.0*(1+lam))
-        sup = (y[1] - y[0] - inf*((h1)**2.0))/(h1)
-        if sup > 0:
-            root = x[0] - ((2.0*c)/(sup+ (sup**2 - 4.0*inf*c)**0.5))
+        a = (lam*y[1] - y[0]*((1.0+lam))+y[2])/(lam*h1**2.0*(1+lam))
+        b = (y[1] - y[0] - a*((h1)**2.0))/(h1)
+        if b > 0:
+            root = x[0] - ((2.0*c)/(b+ (b**2 - 4.0*a*c)**0.5))
         else:
-            root = x[0] - ((2.0*c)/(sup- (sup**2 - 4.0*inf*c)**0.5))
-        # print "inf = %.5f sup = %.5f c = %.5f root = %.5f " % (inf,sup,c,root)
+            root = x[0] - ((2.0*c)/(b- (b**2 - 4.0*a*c)**0.5))
+        # print "a = %.5f b = %.5f c = %.5f root = %.5f " % (a,b,c,root)
         # print "Current approximation is %.9f" % root
         if abs(func(root)) > x[0]:
             x = [x[1],x[0],root]
         else:
             x = [x[2],x[0],root]
         x = swap_points(x)
-    return HttpResponse(json.dumps({ 'points': x }), content_type="application/json")
+        pontos.append([a, b, c])
+    return HttpResponse(json.dumps({ 'points': pontos }), content_type="application/json")
