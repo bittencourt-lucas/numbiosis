@@ -9,4 +9,6 @@ urlpatterns = [
     path(r'/secante', views.SecanteView.as_view(), name='secante'),
     path(r'/muller', views.MullerView.as_view(), name='muller'),
     path(r'/calculafp', views.calculafp, name='calculafp'),
+    path(r'/calculasecante', views.calculasecante, name='calculasecante'),
+    path(r'/calculamuller', views.calculamuller, name='calculamuller'),
 ]
