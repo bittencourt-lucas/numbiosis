@@ -47,7 +47,7 @@ def calculafp(request):
 def calculasecante(request):
     inf  = int(request.POST.get('xl'))                # Limite inferior
     sup  = int(request.POST.get('xu'))                # Limite superior
-    it   = int(request.POST.get('max'))               # Número de iterações
+    it   = int(request.POST.get('maxi'))               # Número de iterações
     tol  = float(request.POST.get('tol'))             # Tolerância do cáculo
     func = lambda x: eval(request.POST.get('f'))      # Função a ser utilizada nos calculos
 
@@ -60,12 +60,13 @@ def calculasecante(request):
             inf = sup
             sup = xm
         k += 1
-    return HttpResponse(json.dumps({ 'resultadosecante': xm }), content_type="application/json")
+    # print (xm);
+    return HttpResponse(json.dumps({ 'points': xm }), content_type="application/json")
 
 def calculamuller(request):
     inf  = int(request.POST.get('xl'))                # Limite inferior
     sup  = int(request.POST.get('xu'))                # Limite superior
-    it   = int(request.POST.get('max'))               # Número de iterações
+    it   = int(request.POST.get('maxi'))               # Número de iterações
     tol  = float(request.POST.get('tol'))             # Tolerância do cáculo
     func = lambda x: eval(request.POST.get('f'))      # Função a ser utilizada nos calculos
 
@@ -83,11 +84,11 @@ def calculamuller(request):
             root = x[0] - ((2.0*c)/(sup+ (sup**2 - 4.0*inf*c)**0.5))
         else:
             root = x[0] - ((2.0*c)/(sup- (sup**2 - 4.0*inf*c)**0.5))
-        print "inf = %.5f sup = %.5f c = %.5f root = %.5f " % (inf,sup,c,root)
-        print "Current approximation is %.9f" % root
+        # print "inf = %.5f sup = %.5f c = %.5f root = %.5f " % (inf,sup,c,root)
+        # print "Current approximation is %.9f" % root
         if abs(func(root)) > x[0]:
             x = [x[1],x[0],root]
         else:
             x = [x[2],x[0],root]
         x = swap_points(x)
-    return HttpResponse(json.dumps({ 'resultadomuller': x }), content_type="application/json")
+    return HttpResponse(json.dumps({ 'points': x }), content_type="application/json")
