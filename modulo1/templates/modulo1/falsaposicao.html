@@ -167,9 +167,14 @@
 											<div class="col-2" style="margin-top: 2.2em;">
 												<button class="button primary small fit" type="submit" id="calcular">Calcular</button>
 											</div>
-										</section>
-										<section class="col-md-8" id="show_plots" style="background-color: white; margin-top: 5em;">
-										</section>
+                    </section>
+                    <h3 style="margin-top: 5em;">Função: <span id="function_title"></span></h3>
+                    <section class="col-md-8" id="show_plots" style="background-color: white;">
+                    </section>
+                    <section>
+                      <h4>Iterações: <span id="interations_value"></span></h4>
+                      <h4>Valor encontrado: <span id="found_y"></span></h4>
+                    </section>
 
 										<!-- </form> -->
 									</section>
@@ -188,6 +193,7 @@
 		<script src="/static/js/preProcessFunctions.js"></script>
 		<script src="/static/js/plotGraph.js"></script>
 		<script src="/static/js/falsaPosicao.js"></script>
+		<!-- <script charset="UTF8" src="/static/vendors/d3/d3.min.js"></script> -->
 		<script src="https://unpkg.com/d3@3/d3.min.js"></script>
 		<script src="https://unpkg.com/function-plot@1/dist/function-plot.js"></script>
 	</body>

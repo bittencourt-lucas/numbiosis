@@ -43,7 +43,12 @@ $(function() {
           "csrfmiddlewaretoken": csrftoken
         },
         success: function(response){
+          var lastPoint = response.points;
+          lastPoint = lastPoint[lastPoint.length - 1];
           createPlotage(plot, response.points);
+          $('#interations_value').text(maxi);
+          $('#found_y').text(`(${lastPoint[0]},${lastPoint[1]})`);
+          $('#function_title').text(plot);
         }
       });
     })
