@@ -4,6 +4,7 @@ from django.views import generic
 import numpy as np
 import scipy as sp
 import json
+import math
 from django.http import HttpResponse
 # Create your views here.
 
@@ -61,7 +62,7 @@ def calculasecante(request):
             xm = sup - (sup - inf) * (func(sup) / (func(sup) - func(inf)))
             inf = sup
             sup = xm
-            pontos.append([inf, sup])
+        pontos.append([sup, func(sup)])
         k += 1
     return HttpResponse(json.dumps({ 'points': pontos }), content_type="application/json")
 
@@ -107,5 +108,39 @@ def calculamuller(request):
         else:
             x = [x[2],x[0],root]
         x = swap_points(x)
-        pontos.append([a, b, c])
+        pontos.append([c, func(c)])
     return HttpResponse(json.dumps({ 'points': pontos }), content_type="application/json")
+
+def teste(request):
+    pontos = []
+    x0     = int(request.POST.get('xl'))                # Limite inferior
+    x1     = int(request.POST.get('xu'))                # Limite superior
+    it     = int(request.POST.get('maxi'))              # Número de iterações
+
+    x2 = (x0 + x1)/2
+    k = 0
+
+    while k <= it:
+        h0 = x1 - x0
+        h1 = x2 - x1
+
+        delta0 = (func(x1) - func(x0) ) / (x1 - x0)
+        delta1 = (func(x2) - func(x1) ) / (x2 - x1)
+        
+        a = (delta1 - delta1) / (h1 - h0)
+        b = a * h1 + delta1
+        c = func(x2)
+
+        x3 = x2 + ((-2 * c) / b + (math.sqrt(b**2 - 4 * a * c)))
+
+        x0 = x1
+        x1 = x2 
+        x2 = x3
+
+        pontos.append([x0, func(x0)])
+        pontos.append([x1, func(x1)])
+        pontos.append([x2, func(x2)])
+        k += 1
+
+    return HttpResponse(json.dumps({ 'points': pontos }), content_type="application/json")
+
