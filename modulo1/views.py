@@ -43,6 +43,7 @@ def calculafp(request):
             a = xm
             pontos.append([xm, kxm])
         i += 1
+    print (xm);
     return HttpResponse(json.dumps({ 'points': pontos }), content_type="application/json")
 
 def calculasecante(request):

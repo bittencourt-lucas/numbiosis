@@ -19,7 +19,7 @@ function createPlotage(fn, points) {
     data: [
       { fn: fn },
       { points: points, fnType: 'points',  graphType: 'scatter' }
-    ]
+    ],
   })
 }
 
