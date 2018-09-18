@@ -17,8 +17,14 @@ class GaussJordanView(generic.TemplateView):
 
 def calculaGaussJordan(request):
     
-    matriz_A = float(request.POST.get('A')) # matriz
-    vetor_b = float(request.POST.get('b')) #vetor
+    print("Eliminação de Gauss Jordan:\n")
+    print("Para:\n")
+    print("[1 -1 2 2]")
+    print("[2 1 -1 1]")
+    print("[-2 -5 3 3]")
+    
+    matriz_A = [[1, -1, 2], [2, 1, -1], [-2, -5, 3]] # matriz
+    vetor_b = [2, 1, 3] #vetor
     """
     
     Método de Eliminação de Gauss Jordan 
