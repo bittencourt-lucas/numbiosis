@@ -16,18 +16,18 @@ class GaussJordanView(generic.TemplateView):
 
 
 def calculaGaussJordan(request):
-    
+
     print("Eliminação de Gauss Jordan:\n")
     print("Para:\n")
     print("[1 -1 2 2]")
     print("[2 1 -1 1]")
     print("[-2 -5 3 3]")
-    
+
     matriz_A = [[1, -1, 2], [2, 1, -1], [-2, -5, 3]] # matriz
     vetor_b = [2, 1, 3] #vetor
     """
-    
-    Método de Eliminação de Gauss Jordan 
+
+    Método de Eliminação de Gauss Jordan
 
     matriz_A : matriz de coeficientes
 
@@ -38,7 +38,7 @@ def calculaGaussJordan(request):
 
     """
     ###### Trecho para obtenção da matriz extendida
-    
+
     if len(matriz_A) != len(vetor_b):
         return None
     matrizExtendida = matriz_A[:]
@@ -46,7 +46,7 @@ def calculaGaussJordan(request):
         matrizExtendida[i].append(vetor_b[i])
     ######
 
-        
+
     for i in range(len(matrizExtendida)):
         #print(i)
         for j in range(len(matrizExtendida),i-1,-1):
@@ -96,7 +96,7 @@ def calculasecante(request):
     k = 0
     xm = 0
     pontos.append([inf, sup])
-    
+
     while k <= it:
         if abs(func(inf)) > tol or abs(sup - inf) > tol:
             xm = sup - (sup - inf) * (func(sup) / (func(sup) - func(inf)))
@@ -134,7 +134,7 @@ def teste(request): # copiada do modulo1
 
         delta0 = (func(x1) - func(x0) ) / (x1 - x0)
         delta1 = (func(x2) - func(x1) ) / (x2 - x1)
-        
+
         a = (delta1 - delta1) / (h1 - h0)
         b = a * h1 + delta1
         c = func(x2)
@@ -142,7 +142,7 @@ def teste(request): # copiada do modulo1
         x3 = x2 + ((-2 * c) / b + (math.sqrt(b**2 - 4 * a * c)))
 
         x0 = x1
-        x1 = x2 
+        x1 = x2
         x2 = x3
 
         pontos.append([x0, func(x0)])

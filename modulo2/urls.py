@@ -7,5 +7,4 @@ urlpatterns = [
     path(r'/', views.IndexView.as_view(), name='index'),
     path(r'/GaussJordan', views.GaussJordanView.as_view(), name='GaussJordan'),
     path(r'/calculaGaussJordan', views.calculaGaussJordan, name='calculaGaussJordan'),
-   
 ]

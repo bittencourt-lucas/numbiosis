@@ -18,4 +18,5 @@ from django.urls import include, path
 urlpatterns = [
     path('', include('home.urls', namespace='home')),
     path('modulo1', include('modulo1.urls', namespace='modulo1')),
+    path('modulo2', include('modulo2.urls', namespace='modulo2')),
 ]
