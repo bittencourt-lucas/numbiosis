@@ -28,13 +28,22 @@ $(function() {
     matrix.push(loadElement(middleColumn));
     matrix.push(loadElement(lastColumn));
 
-    function createSolutionElement(solution) {
-      const solutionTag = $('#solution');
-      let concatString;
+    function createSolutionElement(solution, tagId) {
+      const tbody = $(`#${tagId}`);
+      const tr = $('<tr></tr');
+      let td;
       solution.forEach(element => {
-       solutionTag.text(solutionTag.text() + ', ' + element);
+        td = $('<td></td');
+        td.text(element);
+        tr.append(td);
       });
-      solutionTag.text('[' + (solutionTag.text()).substr(1) + ' ]');
+      tbody.append(tr);
+    }
+
+    function extended(solution, tagId) {
+      solution.forEach(element => {
+        createSolutionElement(element, tagId);
+      });
     }
 
     $.ajax({
@@ -46,7 +55,8 @@ $(function() {
         "csrfmiddlewaretoken": csrftoken,
       },
       success: function(response){
-        createSolutionElement(response.solution);
+        createSolutionElement(response.solution, 'solution');
+        extended(response.extended, 'extended-matrix');
       }
     });
   });
