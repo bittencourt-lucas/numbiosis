@@ -14,8 +14,8 @@ class IndexView(generic.TemplateView):
 class GaussJordanView(generic.TemplateView):
     template_name = 'modulo2/GaussJordan.html'
 
-class GaussJordanView(generic.TemplateView):
-    template_name = 'modulo2/gausJordan.html'
+class NewtonView(generic.TemplateView):
+    template_name = 'modulo2/newton.html'
 
 
 def calculaGaussJordan(request):

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Numbiosis</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/static/assets/css/main.css" />
+		<link rel="stylesheet" href="/static/vendors/jquery-ui/jquery-ui.min.css"/>
+		<noscript><link rel="stylesheet" href="/static/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Page Wrapper -->
+		<section id="page-wrapper">
+			<!-- Header -->
+				<header id="header">
+					<h1><a href="/">Numbiosis</a></h1>
+					<nav>
+						<a href="#menu">Menu</a>
+					</nav>
+				</header>
+				<!-- Menu -->
+        <nav id="menu">
+          <div class="inner">
+            <h2>Menu</h2>
+            <ul class="links">
+              <li><a href="/">Home</a></li>
+              <li><a href="/modulo1">Modulo-1</a></li>
+              <li><a href="/modulo2">Modulo-2</a></li>
+            </ul>
+            <a href="#" class="close">Close</a>
+          </div>
+        </nav>
+
+			<!-- Wrapper -->
+				<section id="wrapper">
+					<header>
+						<div class="inner">
+							<h2>Método de Newton para Sistemas não Lineares</h2>
+							<img src="/static/images/newton.png" align="left" style="padding-right: 2em; width: 30%;"/>
+
+							<p>
+                Método que consiste em se tornar um modelo local linear da função f(x) em torno de um xk, e este modelo é a reta tangente à função.
+							</p>
+							<blockquote>
+								<small>Textos e imagens abaixo retiradas da apostila do professor <a href="http://www.mat.ufpb.br/lenimar/textos/numerv2.pdf" target="_blank">Lenimar</a></small>
+							</blockquote>
+						</div>
+					</header>
+
+					<!-- Content -->
+						<div class="wrapper">
+							<div class="inner">
+								<section>
+									<article>
+										<h3 class="major">Texto</h3>
+										<p>
+                      Seja f (x) derivável em um intervalo [a, b] que contém uma raiz da equação f (x) = 0. Consideremos
+											x0 um ponto desse intervalo que seja uma aproximação para uma raiz da equação. O
+											método de Newton (também conhecido como Newton-Raphson) consiste em calcular uma nova
+											aproximação a partir de x0 como sendo a abscissa do ponto de interseção do eixo dos x com a reta
+											tangente ao gráfico de f (x) no ponto P = (x0, f (x0)).
+										</p>
+										<p>
+											A equação da reta tangente em P é y − f (x0) = f′(x0)(x − x0). Substituindo y = 0 e x = x1 nessa equação,
+											obtemos 0 − f (x0) = f′(x0)(x1 − x0) e daí x1 = x0 − (f(x0) / f′(x0)).
+										</p>
+										<p>
+											Podemos repetir esse tipo de constru¸c˜ao para obtemos x2 a partir de x1 dado por x2 = x1 − ( f(x1)/f′(x1) ),
+											e, de modo semelhante: x3 = x2 − (f(x2)/f′(x2)).
+											<br>
+											De um modo geral temos (para n = 0, 1, 2,···):
+										</p>
+										<blockquote>
+											<p style="font-weight: bold;">xn+1 = xn − ( f(xn) / f′(xn) ) </p>
+										</blockquote>
+									</article>
+									<section style="padding-bottom: 5em;">
+
+									</article>
+								</section>
+								<section>
+									<header style="padding-bottom: 3em;">
+										<h3>Teste o Método de Newton para Sistemas não Lineares</h3>
+									</header>
+									<section>
+										<!-- <form action="{% url 'modulo1:calculafp' %}" method="POST" id="mfpForm"-->
+										<!-- <section class="row gtr-uniform" id="matrix_form">
+											{% csrf_token %}
+											<section class="col-12">
+												<button type"submit" id="calcule">Calcular</button>
+										</section> -->
+							</div>
+						</div>
+		</section>
+		<!-- Scripts -->
+		<script src="/static/assets/js/jquery.min.js"></script>
+		<script src="/static/vendors/cookie/jquery.cookie.js"></script>
+		<script charset="UTF8" src="/static/vendors/jquery-ui/jquery-ui.min.js"></script>
+		<script src="/static/assets/js/jquery.scrollex.min.js"></script>
+		<script src="/static/assets/js/browser.min.js"></script>
+		<script src="/static/assets/js/breakpoints.min.js"></script>
+		<script src="/static/assets/js/util.js"></script>
+		<script src="/static/assets/js/main.js"></script>
+		<script src="/static/js/gausInput.js"></script>
+	</body>
+</html>
