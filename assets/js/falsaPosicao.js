@@ -1,8 +1,6 @@
 
 $(function() {
-  $( document ).tooltip({
-    track: true
-  });
+  $( document ).tooltip({ track: true });
   createPlotage();
   $('#calcular').click(function () {
     var csrftoken = $("input[name=csrfmiddlewaretoken]").val();

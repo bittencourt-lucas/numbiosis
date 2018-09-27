@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Numbiosis</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/static/assets/css/main.css" />
+		<link rel="stylesheet" href="/static/vendors/jquery-ui/jquery-ui.min.css"/>
+		<noscript><link rel="stylesheet" href="/static/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Page Wrapper -->
+		<section id="page-wrapper">
+			<!-- Header -->
+				<header id="header">
+					<h1><a href="/">Numbiosis</a></h1>
+					<nav>
+						<a href="#menu">Menu</a>
+					</nav>
+				</header>
+				<!-- Menu -->
+        <nav id="menu">
+          <div class="inner">
+            <h2>Menu</h2>
+            <ul class="links">
+              <li><a href="/">Home</a></li>
+              <li><a href="/modulo1">Modulo-1</a></li>
+              <li><a href="/modulo2">Modulo-2</a></li>
+            </ul>
+            <a href="#" class="close">Close</a>
+          </div>
+        </nav>
+
+			<!-- Wrapper -->
+				<section id="wrapper">
+					<header>
+						<div class="inner">
+							<h2>Método de Gauss Jordan</h2>
+							<p>
+                Método numérico usado para resolver sistemas de equações lineares
+              </p>
+						</div>
+					</header>
+
+					<!-- Content -->
+						<div class="wrapper">
+							<div class="inner">
+								<section>
+									<article>
+										<h3 class="major">Texto</h3>
+										<p>
+                      O método de Gauss-Jordan é um método de escalonamento que consiste em aplicar operações elementares
+                      à matriz aumentada de um sistema, até que ela esteja na forma escalonada reduzida. A vantagem deste
+                      processo é que um sistema cuja matriz aumentada é uma matriz na forma escalonada reduzida tem solução
+                      imediata, enquanto que para resolver um sistema que está apenas na forma escalonada ainda é necessário
+                      fazer uma série de substituições para obter a soluçãoo final.
+                      <h4>Definição.</h4>
+                      <p>Uma matriz está na forma escalonada reduzida quando ela satisfaz as seguintes condições:</p>
+                      <ol>
+                        <li>O primeiro elemento não-nulo de cada linha não-nula (chamado o pivô da linha) é igual a 1.</li>
+                        <li>O pivô da linha i + 1 ocorre à direita do pivô da linha i.</li>
+                        <li>Se uma coluna contém um pivô, então todas os outros elementos desta coluna são iguais a 0.</li>
+                        <li>Todas as linhas nulas ocorrem abaixo das linhas não-nulas</li>
+                      </ol>
+                    </p>
+                    <blockquote>
+                      <a href="http://www.mat.ufmg.br/~rodney/notas_de_aula/sistemas_lineares.pdf">Exemplo</a>
+                    </blockquote>
+									</article>
+									<section style="padding-bottom: 5em;">
+
+									</article>
+								</section>
+								<section>
+									<header style="padding-bottom: 3em;">
+										<h3>Teste o método de Gauss-Jordan</h3>
+									</header>
+									<section>
+										<!-- <form action="{% url 'modulo1:calculafp' %}" method="POST" id="mfpForm"-->
+										<section class="row gtr-uniform" id="matrix_form">
+											{% csrf_token %}
+											<section id="first-column" class="col-2">
+												<div class="col-1 col-12-xsmall">
+													<input type="text" name="x11" id="x11" placeholder="1" class="first-column"
+													title="Deve ser digitado números, você pode usar o valor de ex: 1"/>
+												</div>
+												<div class="col-1 col-12-xsmall">
+													<input type="text" name="x12" id="x12"  placeholder="-1" class="middle-column"
+													title="Deve ser digitado números, você pode usar o valor de ex: -1"/>
+												</div>
+												<div class="col-1 col-12-xsmall">
+													<input type="text" name="x13" id="x13"  placeholder="2" class="last-column"
+													title="Deve ser digitado números, você pode usar o valor de ex: 2"/>
+												</div>
+											</section>
+											<section class="col-2" id="middle-column">
+												<div class="col-1 col-12-xsmall">
+													<input type="text" name="x21" id="x21" placeholder="2" class="first-column"
+													title="Deve ser digitado números, você pode usar o valor de ex: 2"/>
+												</div>
+												<div class="col-1 col-12-xsmall">
+													<input type="text" name="x22" id="x22"  placeholder="1" class="middle-column"
+													title="Deve ser digitado números, você pode usar o valor de ex: 1"/>
+												</div>
+												<div class="col-1 col-12-xsmall">
+													<input type="text" name="x23" id="x23"  placeholder="-1" class="last-column"
+													title="Deve ser digitado números, você pode usar o valor de ex: -1"/>
+												</div>
+											</section>
+											<section class="col-2" id="last-column">
+												<div class="col-1 col-12-xsmall">
+													<input type="text" name="x21" id="x21" placeholder="-2" class="first-column"
+													title="Deve ser digitado números, você pode usar o valor de ex: -2"/>
+												</div>
+												<div class="col-1 col-12-xsmall">
+													<input type="text" name="x22" id="x22"  placeholder="-5" class="middle-column"
+													title="Deve ser digitado números, você pode usar o valor de ex: -5"/>
+												</div>
+												<div class="col-1 col-12-xsmall">
+													<input type="text" name="x23" id="x23"  placeholder="3" class="last-column"
+													title="Deve ser digitado números, você pode usar o valor de ex: 3"/>
+												</div>
+											</section>
+											<section id="equals" style="padding-left: 0.5em; margin-top: 3em;">
+												=
+											</section>
+											<section class="col-2" id="results">
+												<div class="col-1 col-12-xsmall">
+													<input type="text" name="x21" id="x21" placeholder="2" class="vector-column"
+													title="Deve ser digitado números, você pode usar o valor de ex: 2"/>
+												</div>
+												<div class="col-1 col-12-xsmall">
+													<input type="text" name="x22" id="x22"  placeholder="1" class="vector-column"
+													title="Deve ser digitado números, você pode usar o valor de ex: 1"/>
+												</div>
+												<div class="col-1 col-12-xsmall">
+													<input type="text" name="x23" id="x23"  placeholder="3" class="vector-column"
+													title="Deve ser digitado números, você pode usar o valor de ex: 3"/>
+												</div>
+											</section>
+											<section class="col-12">
+												<button type"submit" id="calcule">Calcular</button>
+												<h3 style="margin-top: 2em;">Solução: </h3>
+												<h4 id="solution"></h4>
+											</section>
+										</section>
+
+									<section id="result_table"></section>
+							</div>
+						</div>
+		</section>
+		<!-- Scripts -->
+		<script src="/static/assets/js/jquery.min.js"></script>
+		<script src="/static/vendors/cookie/jquery.cookie.js"></script>
+		<script charset="UTF8" src="/static/vendors/jquery-ui/jquery-ui.min.js"></script>
+		<script src="/static/assets/js/jquery.scrollex.min.js"></script>
+		<script src="/static/assets/js/browser.min.js"></script>
+		<script src="/static/assets/js/breakpoints.min.js"></script>
+		<script src="/static/assets/js/util.js"></script>
+		<script src="/static/assets/js/main.js"></script>
+		<script src="/static/js/gausInput.js"></script>
+	</body>
+</html>
