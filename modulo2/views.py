@@ -17,6 +17,9 @@ class GaussJordanView(generic.TemplateView):
 class NewtonView(generic.TemplateView):
     template_name = 'modulo2/newton.html'
 
+class SplinesView(generic.TemplateView):
+    template_name = 'modulo2/splines.html'
+
 
 def calculaGaussJordan(request):
 

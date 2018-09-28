@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Numbiosis</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/static/assets/css/main.css" />
+		<link rel="stylesheet" href="/static/vendors/jquery-ui/jquery-ui.min.css"/>
+		<noscript><link rel="stylesheet" href="/static/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Page Wrapper -->
+		<section id="page-wrapper">
+			<!-- Header -->
+				<header id="header">
+					<h1><a href="/">Numbiosis</a></h1>
+					<nav>
+						<a href="#menu">Menu</a>
+					</nav>
+				</header>
+				<!-- Menu -->
+        <nav id="menu">
+          <div class="inner">
+            <h2>Menu</h2>
+            <ul class="links">
+              <li><a href="/">Home</a></li>
+              <li><a href="/modulo1">Modulo-1</a></li>
+              <li><a href="/modulo2">Modulo-2</a></li>
+            </ul>
+            <a href="#" class="close">Close</a>
+          </div>
+        </nav>
+
+			<!-- Wrapper -->
+				<section id="wrapper">
+					<header>
+						<div class="inner">
+							<h2>Splines</h2>
+							<img src="/static/images/newton.png" align="left" style="padding-right: 2em; width: 30%;"/>
+
+							<p>
+                Método que consiste em se tornar um modelo local linear da função f(x) em torno de um xk, e este modelo é a reta tangente à função.
+							</p>
+							<blockquote>
+								<small>Textos e imagens abaixo retiradas da pesquisa pedida pelo professor sobre Splines, você pode ler mais sobre nos links abaixo</small>
+							</blockquote>
+							<small>
+								<ul>
+									<li><a href="https://developer.nvidia.com/gpugems/GPUGems2/gpugems2_chapter20">gpugems2_chapter20</a></li>
+									<li><a href="https://www.ufrgs.br/reamat/CalculoNumerico/livro-oct/i1-interpolacao_cubica_segmentada_-_spline.html">Interpolação cúbica segmentada - spline</a></li>
+									<li><a href="http://www.cs.ubbcluj.ro/~csatol/mach_learn/bemutato/BagyiIbolya_SplinesAndApplications.pdf">Splines and applications</a></li>
+									<li><a href="ftp://ftp.dca.fee.unicamp.br/pub/docs/vonzuben/ia004_1s10/notas_de_aula/topico1_IA004_1s10_Parte5.pdf">Polinômios de Hermite e Splines </a></li>
+									<li><a href="http://gifi.stat.ucla.edu/splines/splines.pdf">Computing and Fitting Monotone Splines </a></li>
+								</ul>
+							</small>
+						</div>
+					</header>
+
+					<!-- Content -->
+						<div class="wrapper">
+							<div class="inner">
+								<section>
+									<article>
+										<h3 class="major">Texto</h3>
+										<h4>Spline de Ordem m</h4>
+										<p>
+											É dividido em duas definições, onde:
+											<ol>
+												<li>
+													Dado um conjunto de n pontos I = (xj,yj)j = 1n e seja delta={xi} iniciando em i=0 e contando de k+1.
+													O conjunto divide o intervalo [a,b] em k+1 subintervalos na forma: Ii=( xi , xi+1 ),
+													para i = 0,1,..., k-1 Ik=( xk , xk+1 )
+													Dado um M positivo, o espaço de f para a existência de polinômios p0, p1, ...
+													pk PM com f(x) =  pi(x) para x  Ii, i= 0,1 ... k, é denominado de espaço de funções polinomiais por
+													partes de ordem m.
+												</li>
+												<li>
+													Considerando um delta uma partição do intervalo [a,b] e seja M um inteiro positivo,
+													tem se a fórmula: Sm(delta) = PP(delta)⋂^CM-2 [a,b] , denomina-se espaço de splines polinomiais de ordem M nos
+													pontos x1, …, xk do conjunto C^m-2[a,b] pertencem todas as funções definidas no intervalo [a,b] com
+													derivadas contínuas até ordem M-2. São n-1 intervalos e em cada um deles há m+1 coeficientes a se
+													determinar e assim uma vez que a ordem é fixada em m>1, existem infinitos splines de ordem m que
+													interpolam os pontos do conjunto. De forma alternativa, pode ser
+													definida através de uma combinação linear de splines simples ou do tipo B,
+													com mesmo tipo de sequência de nós. Como aplicação, ela pode ser integrada para produzir a
+													família de splines monótonas chamada de l-splines, usando diretamente como base para a splines em
+													análise envolvendo dados de resposta positiva.
+												</li>
+											</ol>
+										</p>
+										<h4> Spline Cúbica </h4>
+										<p>
+											O objetivo da spline cúbica é determinar um polinômio de terceiro grau para cada intervalo entre nós. Para n+1 pontos
+											dados, existem intervalos n e 4n constantes indeterminada por conta da fórmula do polinômio de terceiro grau
+											(demonstrado acima). São também necessárias 4n condições para calcular as incógnitas:
+											<ol>
+												<li>Os valores da função e dos polinômios adjacentes devem ser iguais nos nós interiores (2n − 2 condições).</li>
+												<li>A primeira e a última função devem passar pelos pontos extremos (2 condições).</li>
+												<li>As primeiras derivadas nos nós interiores devem ser iguais (n − 1 condições).</li>
+												<li>As segundas derivadas nos nós interiores devem ser iguais (n − 1 condições).</li>
+												<li>As segundas derivadas nos nós extremos são nulas (2 condições).</li>
+											</ol>
+											<br>
+											Cada secção do spline terá a seguinte forma:
+											Splines cúbicas são o tipo de spline mais utilizadas, costumeiramente são utilizadas para processamento
+											digital de imagem onde é aplicado o filtro bicúbico permitindo maior suavização de bordas tanto
+											para imagens quanto para aplicações gráficas. Abaixo há uma comparação, respectivamente, entre a
+											filtragem bilinear e bicúbica:
+										</p>
+										<div style="display: flex; align-items: center; justify-content: flex-end;">
+											<div style="margin: auto; margin-right: 1em;">
+												<img src="/static/images/splinesExample1.png" alt="">
+												<p style="margin-left: 3em;">(a)</p>
+											</div>
+											<div style="margin: auto; margin-right: 1em; margin-left: 1em;">
+												<img src="/static/images/splinesExample2.png" alt="">
+												<p style="margin-left: 3em;">(b)</p>
+											</div>
+											<div style="margin: auto; margin-left: 1em;">
+												<img src="/static/images/splinesExample3.png" alt="">
+												<p style="margin-left: 3em;">(c)</p>
+											</div>
+										</div>
+
+									</article>
+									<section style="padding-bottom: 5em;">
+
+									</article>
+								</section>
+								<section>
+									<header style="padding-bottom: 3em;">
+										<h3>Teste o Método de Newton para Sistemas não Lineares</h3>
+									</header>
+									<section>
+										<!-- <form action="{% url 'modulo1:calculafp' %}" method="POST" id="mfpForm"-->
+										<!-- <section class="row gtr-uniform" id="matrix_form">
+											{% csrf_token %}
+											<section class="col-12">
+												<button type"submit" id="calcule">Calcular</button>
+										</section> -->
+							</div>
+						</div>
+		</section>
+		<!-- Scripts -->
+		<script src="/static/assets/js/jquery.min.js"></script>
+		<script src="/static/vendors/cookie/jquery.cookie.js"></script>
+		<script charset="UTF8" src="/static/vendors/jquery-ui/jquery-ui.min.js"></script>
+		<script src="/static/assets/js/jquery.scrollex.min.js"></script>
+		<script src="/static/assets/js/browser.min.js"></script>
+		<script src="/static/assets/js/breakpoints.min.js"></script>
+		<script src="/static/assets/js/util.js"></script>
+		<script src="/static/assets/js/main.js"></script>
+		<script src="/static/js/gausInput.js"></script>
+	</body>
+</html>

@@ -8,5 +8,6 @@ urlpatterns = [
     path(r'/GaussJordan', views.GaussJordanView.as_view(), name='GaussJordan'),
     path(r'/gaussJordan', views.GaussJordanView.as_view(), name='gaussJordan'),
     path(r'/newton', views.NewtonView.as_view(), name='newton'),
+    path(r'/splines', views.SplinesView.as_view(), name='splines'),
     path(r'/calculaGaussJordan', views.calculaGaussJordan, name='calculaGaussJordan'),
 ]
