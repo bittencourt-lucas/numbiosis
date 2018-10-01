@@ -12,7 +12,7 @@ class IndexView(generic.TemplateView):
     template_name = 'modulo2/index.html'
 
 class GaussJordanView(generic.TemplateView):
-    template_name = 'modulo2/GaussJordan.html'
+    template_name = 'modulo2/gaussJordan.html'
 
 class NewtonView(generic.TemplateView):
     template_name = 'modulo2/newton.html'
