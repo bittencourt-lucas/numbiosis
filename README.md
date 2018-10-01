@@ -46,6 +46,7 @@ Install the requirements below:
 
 * Cláudio Djohnnatha Duarte ([cdjohnnatha](https://github.com/cdjohnnatha)) claudio@assistatecnologia.com.br
 * Lucas Bittencourt ([lbittencourt](https://github.com/lbittencourt)) 
+* Richelieu Ramos de Andrade Costa (https://github.com/RichelieuCosta94) RichelieuCosta@gmail.com
 * Thiago Luiz Nunes ([ThiagoLuizNunes](https://github.com/ThiagoLuizNunes)) thiagoluiz.dev@gmail.com
 
 ## License
