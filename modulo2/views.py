@@ -131,15 +131,17 @@ def cubic_spline(x, y):
     return [y, b, c, d]
 
 
-def processingSpline():
+def processingSpline(request):
+    f = lambda x: eval(request.POST.get('f'))
 
     # entradas
-    def f(x): #função
-        return math.e ** x
+    # def f(x): #função
+    #     return math.e ** x
 
-    interval = 3
-    x = [i for i in range(interval + 1)] #lista de floats 
-    y = [f(i) for i in range(interval + 1)] #lista de floats 
+    # interval = 3
+    interval = int(request.POST.get('interval'))
+    x = [i for i in range(interval + 1)] #lista de floats
+    y = [f(i) for i in range(interval + 1)] #lista de floats
 
     # processamento de x e y
     a = cubic_spline(x, y)
@@ -156,9 +158,21 @@ def processingSpline():
                    a[3][i] * (xs[i][k] - i) ** 3
                    for k in range(points_per_interval)])
 
+    results = []
+    for idx, val in enumerate(xs):
+        for idx2, element in enumerate(val):
+            results.append([element, ys[idx][idx2]])
+
     # Preparando os dados para plotagem da função dada
     x = np.linspace(0, 3, interval * points_per_interval - (interval - 1))
     y = [f(x[i]) for i in range(len(x))]
+
+    graphic = []
+    for idx, element in enumerate(x):
+        graphic.append([element, y[idx]])
+
+    return HttpResponse(json.dumps({ 'graphic': graphic, 'aproximations': results }), content_type="application/json")
+
 
     """
     Exemplo de plotagem
