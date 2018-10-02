@@ -10,4 +10,5 @@ urlpatterns = [
     path(r'/splines', views.SplinesView.as_view(), name='splines'),
     path(r'/calculaGaussJordan', views.calculaGaussJordan, name='calculaGaussJordan'),
     path(r'/processingSpline', views.processingSpline, name='processingSpline'),
+    path(r'/calculaNewton', views.calculaNewton, name='calculaNewton'),
 ]
