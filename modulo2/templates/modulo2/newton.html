@@ -82,25 +82,53 @@
 									<header style="padding-bottom: 3em;">
 										<h3>Teste o Método de Newton para Sistemas não Lineares</h3>
 									</header>
-									<section>
+									<section class="row gtr-uniform" id="falta_posicao_inputs">
+											{% csrf_token %}
+											<div class="col-4 col-12-xsmall">
+												<label for="function1">Função-1</label>
+												<input type="text" name="function1" id="function1" placeholder="x + y − 3 = 0"
+												title="Deve ser digitado a função que será utilizada e mostrada no gráfico, ex: x + y − 3 = 0"/>
+											</div>
+											<div class="col-5 col-12-xsmall">
+												<label for="defined_function">Função-2</label>
+												<input type="text" name="defined_function" id="function2"  placeholder="x^2 + y^2 - 9 = 0"
+												title="Deve a função que será utilizada nos calculos, você pode usar o valor de ex: x^2 + y^2 - 9 = 0"/>
+											</div>
+											<div class="col-2" style="margin-top: 2.2em;">
+												<button class="button primary small fit" type="submit" id="calcular">Calcular</button>
+											</div>
+										</section>
 										<!-- <form action="{% url 'modulo1:calculafp' %}" method="POST" id="mfpForm"-->
 										<!-- <section class="row gtr-uniform" id="matrix_form">
 											{% csrf_token %}
 											<section class="col-12">
 												<button type"submit" id="calcule">Calcular</button>
 										</section> -->
+										<h3 style="margin-top: 5em;">Função: <span id="function_title"></span></h3>
+										<section class="col-md-8" id="show_plots" style="background-color: white;">
+										</section>
+										<section>
+											<h4>Intervalo: <span id="interations_value"></span></h4>
+											<!-- <h4>Valor encontrado: <span id="found_y"></span></h4> -->
+										</section>
 							</div>
 						</div>
 		</section>
 		<!-- Scripts -->
 		<script src="/static/assets/js/jquery.min.js"></script>
+		<script src="/static/vendors/d3/d3.min.js"></script>
+		<script src="/static/vendors/functionPlot/function-plot.js"></script>
 		<script src="/static/vendors/cookie/jquery.cookie.js"></script>
 		<script charset="UTF8" src="/static/vendors/jquery-ui/jquery-ui.min.js"></script>
 		<script src="/static/assets/js/jquery.scrollex.min.js"></script>
+		<script src="/static/js/preProcessFunctions.js"></script>
+		<script src="/static/js/newton.js"></script>
+		<script src="/static/js/plotGraph.js"></script>
 		<script src="/static/assets/js/browser.min.js"></script>
 		<script src="/static/assets/js/breakpoints.min.js"></script>
 		<script src="/static/assets/js/util.js"></script>
 		<script src="/static/assets/js/main.js"></script>
-		<script src="/static/js/gausInput.js"></script>
+		<script src="https://unpkg.com/d3@3/d3.min.js"></script>
+		<script src="https://unpkg.com/function-plot@1/dist/function-plot.js"></script>
 	</body>
 </html>

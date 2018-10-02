@@ -4,7 +4,7 @@ let heightY = $(plotTag).height();
   /**
  * Plotage
  */
-function createPlotage(fn, points, fnTypes) {
+function createPlotage(fn, points, fnTypes, dataType, graph) {
   if(!fn) {
     fn = '0';
   }
@@ -13,17 +13,26 @@ function createPlotage(fn, points, fnTypes) {
   }
 
   if(!fnTypes) {
-    fnType = 'points'
+    fnTypes = 'points'
+  }
+
+  if(!graph) {
+    graph = 'scatter';
+  }
+
+  if(!dataType) {
+    dataType =
+    [
+      { fn: fn },
+      { points: points, fnType: fnTypes,  graphType: graph }
+    ]
   }
   functionPlot({
     target: plotTag,
     grid: true,
     width: widthX,
     height: heightY,
-    data: [
-      { fn: fn },
-      { points: points, fnType: fnTypes,  graphType: 'scatter' }
-    ],
+    data: dataType,
   })
 }
 

@@ -34,8 +34,21 @@ $(function() {
         console.log(response);
         var graphic = response.graphic;
         var approximations = response.aproximations;
+        console.log(approximations);
+        dataType = [
+          { fn: plot },
+          {
+            yAxis: {domain: [-1, 9]},
+            Axis: {domain: [-3, 3]},
+            secants: [
+              { x0: 1, x1: 3 },
+              { x0: 1, x1: 2.5 },
+              { x0: 1, x1: 2 }
+            ]
+          }
+        ]
         // lastPoint = lastPoint[lastPoint.length - 1];
-        createPlotage(plot, approximations, 'linear');
+        createPlotage(undefined, undefined, undefined, dataType);
         $('#interations_value').text(interval);
         // $('#found_y').text(`(${lastPoint[0]},${lastPoint[1]})`);
         $('#function_title').text(plot);
