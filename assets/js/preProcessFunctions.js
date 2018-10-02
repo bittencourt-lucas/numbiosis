@@ -27,6 +27,9 @@ function fixGraph(func) {
   if (plot.indexOf("**") !== -1) {
     plot = plot.replace("**", "^");
   }
+  if (plot.indexOf("=")) {
+    plot = plot.substring(0, s.indexOf('='));
+  }
   return plot;
 }
 
