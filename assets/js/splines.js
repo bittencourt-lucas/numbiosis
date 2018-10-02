@@ -6,7 +6,7 @@ $(function() {
     const csrftoken = $("input[name=csrfmiddlewaretoken]").val();
     const intervalTag = $('#interval');
     const defined_function = $('#defined_function');
-
+    const category = $('#category').val();
     var f = defined_function.val();
     var interval = intervalTag.val();
 
@@ -22,6 +22,50 @@ $(function() {
 
 
     createPlotage(plot);
+    function generateColor() {
+        let color;
+        const colorNumber = Math.floor(Math.random() * Math.floor(6));
+        switch(colorNumber) {
+          case 0:
+            color = 'red';
+            break;
+          case 1:
+            color = 'green';
+            break;
+          case 2:
+            color = 'blue';
+            break;
+          case 3:
+            color = 'purple';
+            break;
+          case 4:
+            color = 'black';
+            break;
+          case 5:
+            color = 'yellow';
+            break;
+          case 6:
+            color = 'grey';
+            break;
+          default:
+            color = 'red';
+        }
+        return color;
+    }
+    function createAproximation(element, dataType) {
+      let vectors;
+      element.forEach((value, index) => {
+        vectors = {
+          vector: value,
+          offset: value,
+          graphType: category,
+          fnType: 'vector',
+          color: generateColor(),
+        }
+        dataType.push(vectors);
+      });
+      return dataType;
+    }
     $.ajax({
       type:"POST",
       url:"/modulo2/processingSpline",
@@ -35,18 +79,13 @@ $(function() {
         var graphic = response.graphic;
         var approximations = response.aproximations;
         console.log(approximations);
-        dataType = [
-          { fn: plot },
-          {
-            yAxis: {domain: [-1, 9]},
-            Axis: {domain: [-3, 3]},
-            secants: [
-              { x0: 1, x1: 3 },
-              { x0: 1, x1: 2.5 },
-              { x0: 1, x1: 2 }
-            ]
-          }
+        let dataType = [
+          { fn: plot},
+          { points: graphic, fnType: 'points',  graphType: 'scatter', color: 'black'},
+
         ]
+        dataType = createAproximation(approximations, dataType);
+        console.log(dataType);
         // lastPoint = lastPoint[lastPoint.length - 1];
         createPlotage(undefined, undefined, undefined, dataType);
         $('#interations_value').text(interval);

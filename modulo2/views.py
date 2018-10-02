@@ -161,8 +161,8 @@ def processingSpline(request):
     results = []
     for idx, val in enumerate(xs):
         for idx2, element in enumerate(val):
-            secants = {'x0': element, 'x1': ys[idx][idx2]}
-            results.append(secants)
+            # secants = {'x0': element, 'x1': ys[idx][idx2]}
+            results.append([element, ys[idx][idx2]])
 
     # Preparando os dados para plotagem da função dada
     x = np.linspace(0, 3, interval * points_per_interval - (interval - 1))
