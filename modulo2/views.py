@@ -5,6 +5,10 @@ import numpy as np
 import scipy as sp
 import json
 import math
+
+from scipy.optimize import fsolve
+# from __future__ import division
+from numpy import linalg
 from django.http import HttpResponse
 # Create your views here.
 
@@ -183,3 +187,44 @@ def processingSpline(request):
     plt.ylabel('e^x')
     plt.show()
     """
+
+ 
+
+def JF(func1, func2):
+    l1 = derivative(func1, 1.0, dx=1e-6)
+    l2 = derivative(func2, 1.0, dx=1e-6)
+
+    return [l1, l2]
+
+def F(func1, func2):
+    return [l1, l2]
+
+def newton(request):  
+    pontos = []
+    xl     = float(request.POST.get('xl'))                  # Limite inferior
+    xu     = float(request.POST.get('xu'))                  # Limite superior
+    TOL    = float(request.POST.get('tol'))                 # Tolerância do cáculo
+    N      = float(request.POST.get('maxi'))                # Maximo de iterações
+    func1  = lambda x: eval(request.POST.get('func1'))      # Função a ser utilizada nos calculos
+    func2  = lambda x: eval(request.POST.get('func2'))      # Função a ser utilizada nos calculos
+    
+    x0 = np.arr([xl, xu])
+    x  = np.copy(x0).astype('double') 
+    # x = x-np.linalg.inv(JF(func1, fun2)).dot(F(func1, func2))
+
+    k = 0
+    pontos.append([xl, xu])
+
+    #iteracoes  
+    while (k < N):  
+       k += 1  
+       #iteracao Newton  
+       delta = -np.linalg.inv(JF(x)).dot(F(x))  
+       x = x + delta  
+       pontos.append([delta, x])
+       #criterio de parada  
+       if (np.linalg.norm(delta,np.inf) < TOL):  
+           break
+
+    HttpResponse(json.dumps({ 'points': pontos }), content_type="application/json")
+
