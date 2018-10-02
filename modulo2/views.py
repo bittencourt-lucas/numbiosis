@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import generic
+from scipy.misc import derivative
 import numpy as np
 import scipy as sp
 import json
@@ -211,7 +212,7 @@ def calculaNewton(request):
     func1  = lambda x: eval(request.POST.get('func1'))      # Função a ser utilizada nos calculos
     func2  = lambda x: eval(request.POST.get('func2'))      # Função a ser utilizada nos calculos
 
-    x0 = np.arr([xl, xu])
+    x0 = np.array([xl, xu])
     x  = np.copy(x0).astype('double')
 
     k = 0
