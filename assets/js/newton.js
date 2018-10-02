@@ -47,8 +47,8 @@ $(function() {
       data: {
         "xl": xl,
         "xu": xu,
-        "f": f,
-        "f2": f2,
+        "func1": f,
+        "func2": f2,
         "tol": tol,
         "maxi": maxi,
         "csrfmiddlewaretoken": csrftoken
