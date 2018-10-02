@@ -190,16 +190,18 @@ def processingSpline(request):
 
  
 
-def JF(func1, func2):
+def JF(func1, func2, x0):
     l1 = derivative(func1, 1.0, dx=1e-6)
     l2 = derivative(func2, 1.0, dx=1e-6)
 
-    return [l1, l2]
+    s = fsolve([l1, l2], x0)
+    return s
 
-def F(func1, func2):
-    return [l1, l2]
+def F(func1, func2, x0):
+    s = fsolve([func1, func2], x0)
+    return s
 
-def newton(request):  
+def newton(request):
     pontos = []
     xl     = float(request.POST.get('xl'))                  # Limite inferior
     xu     = float(request.POST.get('xu'))                  # Limite superior
@@ -210,7 +212,6 @@ def newton(request):
     
     x0 = np.arr([xl, xu])
     x  = np.copy(x0).astype('double') 
-    # x = x-np.linalg.inv(JF(func1, fun2)).dot(F(func1, func2))
 
     k = 0
     pontos.append([xl, xu])
@@ -219,7 +220,7 @@ def newton(request):
     while (k < N):  
        k += 1  
        #iteracao Newton  
-       delta = -np.linalg.inv(JF(x)).dot(F(x))  
+       delta = -np.linalg.inv(JF(func1, func2, x)).dot(F(func1, func2, x))  
        x = x + delta  
        pontos.append([delta, x])
        #criterio de parada  
