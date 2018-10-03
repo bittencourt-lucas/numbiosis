@@ -29,6 +29,8 @@ $(function() {
     if(!f2) { f2 = function_calculate2.attr('placeholder'); }
     if(!tol) { tol = tolerance.attr('placeholder'); }
     if(!maxi) { maxi = maximum_interations.attr('placeholder'); }
+    console.log('Inside calcular newton')
+    
     const plot = fixGraph(f);
     const plot2 = fixGraph(f2);
     f = fixPython(f);
@@ -41,6 +43,8 @@ $(function() {
       { fn: plot2, fnType: 'implicit', color: 'green' },
     ];
     createPlotage(undefined, undefined, undefined, data);
+    console.log(f)
+    console.log(f2)
     $.ajax({
       type:"POST",
       url:"/modulo2/calculaNewton",
@@ -55,6 +59,8 @@ $(function() {
       },
       success: function(response){
         var lastPoint = response.points;
+        console.log(lastPoint)
+
         lastPoint = lastPoint[lastPoint.length - 1];
         const data = [
           { fn: plot, fnType: 'implicit' },

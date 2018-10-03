@@ -223,23 +223,26 @@ def calculaNewton(request):
 
     x = np.array([xl,xu])
 
-    k=0  
+    k = 0  
     # iteracoes  
     while (k < N):  
-       k += 1  
-       #iteracao Newton  
-       resultJacobian = jacobianMatrix(f1, f2, x)
-       resultFx = fxMatrix(f1, f2, x)
+        print(x)
+        k += 1  
+        #iteracao Newton  
+        resultJacobian = jacobianMatrix(f1, f2, x)
+        resultFx = fxMatrix(f1, f2, x)
 
-       delta = -np.linalg.inv(resultJacobian).dot(resultFx)  
+        delta = -np.linalg.inv(resultJacobian).dot(resultFx)  
 
-       x[0] = x[0] + delta[0];
-       x[1] = x[1] + delta[1];
-       graph.append([x[0], x[1]])
+        x[0] = x[0] + delta[0];
+        x[1] = x[1] + delta[1];
 
-       # #criterio de parada  
-       if (np.linalg.norm(delta,np.inf) < TOL):  
-           break
+        graph.append([x[0], x[1]])
+
+        # #criterio de parada  
+        if (np.linalg.norm(delta,np.inf) < TOL):
+            print('Criterio de parada!')
+            break
 
     return HttpResponse(json.dumps({ 'points': graph }), content_type="application/json")
 

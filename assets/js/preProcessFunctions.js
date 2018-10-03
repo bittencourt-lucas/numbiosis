@@ -34,8 +34,11 @@ function fixGraph(func) {
 }
 
 function fixPython(func) {
-  var plot = func.replace("^", "**");
-  var fix;
+  let plot = func;
+  while(plot.indexOf("^") !== -1) {
+    plot = plot.replace("^", "**")
+  }
+  let fix;
   while(multiplyRegex.test(plot)) {
     fix = multiplyRegex.exec(plot);
     plot = plot.replace(`${fix[0]}${fix[1]}`, `${fix[0]}*${fix[1]}`)
