@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views import generic
 from scipy.misc import derivative
 import numpy as np
-import scipy as sp
+import sympy as sp
 import json
 import math
 
@@ -179,55 +179,67 @@ def processingSpline(request):
 
     return HttpResponse(json.dumps({ 'graphic': graphic, 'aproximations': results }), content_type="application/json")
 
+def jacobianMatrix(func1, func2, points):
+    res = np.zeros((2,2))
+    x = sp.Symbol('x')
+    y = sp.Symbol('y')
 
-    """
-    Exemplo de plotagem
-    plt.plot(x, y, 'k.-', xs[0], ys[0], 'r.--', xs[1], ys[1], 'g.--', xs[2], ys[2], 'b.--')
+    dx11 = sp.diff(func1,x)
+    dx12 = sp.diff(func1,y)
+    dx21 = sp.diff(func1,x)
+    dx22 = sp.diff(func2,y)
 
-    plt.title('Spline Cubica')
-    plt.xlabel('x')
-    plt.ylabel('e^x')
-    plt.show()
-    """
+    jx11 = lambda x, y : eval(str(dx11))
+    jx12 = lambda x, y : eval(str(dx12))
+    jx21 = lambda x, y : eval(str(dx21))
+    jx22 = lambda x, y : eval(str(dx22))
 
+    res[0,0] = jx11(points[0], points[1])
+    res[0,1] = jx12(points[0], points[1])
+    res[1,0] = jx21(points[0], points[1])
+    res[1,1] = jx22(points[0], points[1])
 
+    return res;
 
-def JF(func1, func2, x0):
-    l1 = derivative(func1, 1.0, dx=1e-6)
-    l2 = derivative(func2, 1.0, dx=1e-6)
+def fxMatrix(func1, func2, points):
+    res = np.zeros((2,1))
 
-    s = fsolve([l1, l2], x0)
-    return s
+    fx1 = lambda x, y : eval(str(func1))
+    fx2 = lambda x, y : eval(str(func2))
 
-def F(func1, func2, x0):
-    s = fsolve([func1, func2], x0)
-    return s
+    res[0,0] = fx1(points[0], points[1])
+    res[1,0] = fx2(points[0], points[1])
+
+    return res
 
 def calculaNewton(request):
-    pontos = []
-    xl     = float(request.POST.get('xl'))                  # Limite inferior
-    xu     = float(request.POST.get('xu'))                  # Limite superior
-    TOL    = float(request.POST.get('tol'))                 # Tolerância do cáculo
-    N      = float(request.POST.get('maxi'))                # Maximo de iterações
-    func1  = lambda x: eval(request.POST.get('func1'))      # Função a ser utilizada nos calculos
-    func2  = lambda x: eval(request.POST.get('func2'))      # Função a ser utilizada nos calculos
+    graph  = []
+    xl     = float(request.POST.get('xl'))       # Limite inferior
+    xu     = float(request.POST.get('xu'))       # Limite superior
+    TOL    = float(request.POST.get('tol'))      # Tolerância do cáculo
+    N      = float(request.POST.get('maxi'))     # Maximo de iterações
+    f1     = request.POST.get('func1')           # Função a ser utilizada nos calculos
+    f2     = request.POST.get('func2')           # Função a ser utilizada nos calculos
 
-    x0 = np.array([xl, xu])
-    x  = np.copy(x0).astype('double')
+    x = np.array([xl,xu])
 
-    k = 0
-    pontos.append([xl, xu])
+    k=0  
+    # iteracoes  
+    while (k < N):  
+       k += 1  
+       #iteracao Newton  
+       resultJacobian = jacobianMatrix(f1, f2, x)
+       resultFx = fxMatrix(f1, f2, x)
 
-    #iteracoes
-    while (k < N):
-       k += 1
-       #iteracao Newton
-       delta = -np.linalg.inv(JF(func1, func2, x)).dot(F(func1, func2, x))
-       x = x + delta
-       pontos.append([delta, x])
-       #criterio de parada
-       if (np.linalg.norm(delta,np.inf) < TOL):
+       delta = -np.linalg.inv(resultJacobian).dot(resultFx)  
+
+       x[0] = x[0] + delta[0];
+       x[1] = x[1] + delta[1];
+       graph.append([x[0], x[1]])
+
+       # #criterio de parada  
+       if (np.linalg.norm(delta,np.inf) < TOL):  
            break
 
-    HttpResponse(json.dumps({ 'points': pontos }), content_type="application/json")
+    return HttpResponse(json.dumps({ 'points': graph }), content_type="application/json")
 
