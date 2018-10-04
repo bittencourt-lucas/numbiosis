@@ -36,6 +36,9 @@ function createPlotage(fn, points, fnTypes, externalData, graph) {
     width: widthX,
     height: heightY,
     data: externalData,
+    plugins: [
+      functionPlot.plugins.zoomBox()
+    ]
   })
 }
 

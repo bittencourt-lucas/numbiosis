@@ -23,13 +23,11 @@ function preProcess(func) {
 }
 
 function fixGraph(func) {
-  var plot = func.replace("np.", "");
-  if (plot.indexOf("**") !== -1) {
+  let plot = func.replace("np.", "");
+  while (plot.indexOf("**") !== -1) {
     plot = plot.replace("**", "^");
   }
-  if (plot.indexOf("=")) {
-    plot = plot.substring(0, s.indexOf('='));
-  }
+
   return plot;
 }
 

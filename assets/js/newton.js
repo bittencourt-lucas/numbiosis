@@ -30,7 +30,6 @@ $(function() {
     if(!tol) { tol = tolerance.attr('placeholder'); }
     if(!maxi) { maxi = maximum_interations.attr('placeholder'); }
     console.log('Inside calcular newton')
-    
     const plot = fixGraph(f);
     const plot2 = fixGraph(f2);
     f = fixPython(f);
@@ -39,12 +38,12 @@ $(function() {
     console.log(plot)
     console.log(plot2)
     const data = [
-      { fn: plot, fnType: 'implicit' },
+      { fn: plot, fnType: 'implicit', color: 'blue' },
       { fn: plot2, fnType: 'implicit', color: 'green' },
+      { points: [[0,0]], fnType: 'points', graphType: 'scatter' }
     ];
+
     createPlotage(undefined, undefined, undefined, data);
-    console.log(f)
-    console.log(f2)
     $.ajax({
       type:"POST",
       url:"/modulo2/calculaNewton",
@@ -58,14 +57,13 @@ $(function() {
         "csrfmiddlewaretoken": csrftoken
       },
       success: function(response){
-        var lastPoint = response.points;
-        console.log(lastPoint)
-
-        lastPoint = lastPoint[lastPoint.length - 1];
+        const points = response.points;
+        const lastPoint = points[points.length - 1]
+        console.log(response)
         const data = [
           { fn: plot, fnType: 'implicit' },
           { fn: plot2, fnType: 'implicit', color: 'green' },
-          { points: response.points, fnType: 'points',  graphType: 'scatter' }
+          { points: points, fnType: 'points',  graphType: 'scatter', color: 'red' },
         ];
         createPlotage(undefined,undefined, undefined, data);
         $('#interations_value').text(maxi);
