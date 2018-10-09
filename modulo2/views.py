@@ -184,16 +184,17 @@ def jacobianMatrix(func1, func2, points):
     x = sp.Symbol('x')
     y = sp.Symbol('y')
 
+    # Calcula a dereivada primeira da matrix
     dx11 = sp.diff(func1,x)
     dx12 = sp.diff(func1,y)
     dx21 = sp.diff(func1,x)
     dx22 = sp.diff(func2,y)
-
+    #  Transforma o resultado das derivadas primeira em funções
     jx11 = lambda x, y : eval(str(dx11))
     jx12 = lambda x, y : eval(str(dx12))
     jx21 = lambda x, y : eval(str(dx21))
     jx22 = lambda x, y : eval(str(dx22))
-
+    # Aplica os pontos em cada função da matrix
     res[0,0] = jx11(points[0], points[1])
     res[0,1] = jx12(points[0], points[1])
     res[1,0] = jx21(points[0], points[1])
@@ -203,10 +204,10 @@ def jacobianMatrix(func1, func2, points):
 
 def fxMatrix(func1, func2, points):
     res = np.zeros((2,1))
-
+    # Transforma as funções de entrada
     fx1 = lambda x, y : eval(str(func1))
     fx2 = lambda x, y : eval(str(func2))
-
+    # Aplica os pontos em cada função de entrada
     res[0,0] = fx1(points[0], points[1])
     res[1,0] = fx2(points[0], points[1])
 
